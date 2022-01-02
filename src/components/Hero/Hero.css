@@ -1,0 +1,29 @@
+.hero {
+    background-image: url("../../images/hero_image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 90vh;
+    color: #fff;
+}
+.hero__text {
+    width: calc(100% - 832px);
+    margin: auto;
+    text-align: left;
+}
+.hero__title {
+    font-family: "roboto-slab";
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 64px;
+    margin: 0;
+    margin-top: 80px;
+}
+
+.hero__description {
+    font-family: "roboto" ;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0;
+    margin-top: 32px;
+}
