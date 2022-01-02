@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 104px;
+    margin: auto;
+    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+}
+.header_logo {
+    font-family: "roboto-slab";
+    font-weight: 700;
+    font-size: 20px;
+    padding: 30px 0 26px 0;
+    margin: 0;
+}
