@@ -1,0 +1,25 @@
+.about {
+    display: flex;
+    margin: 80px auto;
+    width: calc(100% - 208px);
+}
+
+.about__description {
+    text-align: left;
+    color: #1A1B22;
+    margin-left: 56px;
+}
+
+.about__title {
+    font-size: 40px;
+    line-height: 46px;
+    font-family: "roboto-slab";
+    font-weight: 400;
+}
+
+.about__paragraph {
+    font-size: 18px;
+    line-height: 24px;
+    font-family: "roboto";
+    font-weight: 400;
+}
