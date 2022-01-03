@@ -1,0 +1,39 @@
+.footer {
+    font-family: "roboto";
+    font-weight: 400;
+    display: flex;
+    justify-content: space-between;
+    width: calc(100% - 208px);
+    margin: auto;
+    padding: 30px 0px 28px 0px;
+}
+
+.footer__navigation {
+    display: flex;
+}
+
+.footer__copyrights {
+    font-size: 16px;
+    line-height: 22px;
+    color: #B6BCBF;
+    margin: 0;
+}
+
+.footer__link {
+    font-size: 18px;
+    line-height: 24px;
+    color: #1A1B22;
+    margin: 0;
+}
+
+.footer__link:not(:last-of-type) {
+    margin-right: 15px;
+}
+
+.footer__social-links {
+    margin-left: 40px;
+}
+
+.footer__social-link:not(:last-of-type) {
+    margin-right: 24px;
+}
