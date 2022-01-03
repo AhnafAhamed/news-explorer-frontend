@@ -14,8 +14,7 @@
     padding: 21px 208px 21px 24px;
     border-radius: 100px;
     border: none;
-    width: 327px;
-    /* backdrop-filter: blur(8px); */
+    width: 376px;
 }
 
 .search-form__input::placeholder {
@@ -50,4 +49,30 @@
 
 .search-form__buttton:active {
     background-color: #2A65CC;
+}
+
+@media (max-width: 768px) {
+    .search-form {
+        margin-top: 48px;
+    }
+
+    .search-form__input {
+        width: 228px;
+        padding: 17px 196px 17px 24px;
+    }
+
+    .search-form__buttton {
+        padding: 16px 52px;
+    }
+}
+
+@media (max-width: 500px) {
+    .search-form__input {
+        width: 256px;
+        padding: 17px 16px;
+    }
+    .search-form__buttton {
+        padding: 16px 116px;
+        top: 72px;
+    }
 }

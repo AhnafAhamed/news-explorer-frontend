@@ -23,3 +23,46 @@
     font-family: "roboto";
     font-weight: 400;
 }
+
+@media (max-width: 965px) {
+    .about {
+        align-items: center;
+        width: calc(100% - 80px);
+    }
+    .about__title {
+        font-size: 30px;
+        line-height: 40px;
+    }
+
+    .about__description {
+        margin-left: 32px;
+    }
+
+    .about__image {
+        width: 232px;
+        height: 232px;
+    }
+    .about__title {
+        margin-top: 24px;
+        margin-bottom: 16px;
+    }
+    .about__paragraph {
+        margin: 0;
+    }
+}
+
+@media (max-width: 660px) {
+    .about {
+        flex-direction: column;
+    }
+
+    .about__image {
+        width: 272px;
+        height: 272px;
+    }
+    
+    .about__description {
+        margin-left: 0px;
+    }
+}
+

@@ -7,8 +7,10 @@ function Footer() {
         <footer className="footer">
             <p className="footer__copyrights">© 2021 Supersite, Powered by News API</p>
             <div className="footer__navigation">
-                <p className="footer__link">Home</p>
-                <p className="footer__link">Practicum by Yandex</p>
+                <div className="footer__links">
+                    <p className="footer__link">Home</p>
+                    <p className="footer__link">Practicum by Yandex</p>
+                </div>
                 <div className="footer__social-links">
                     <img src={githubIcon} alt="" className="footer__social-link" />
                     <img src={fbIcon} alt="" className="footer__social-link" />
