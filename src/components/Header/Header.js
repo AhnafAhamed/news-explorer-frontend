@@ -3,8 +3,8 @@ import './Header.css'
 
 function Header () {
     return (
-        <div className="header">
-            <p className="header_logo">NewsExplorer</p>
+        <div className="header header_mobile">
+            <p className="header__logo">NewsExplorer</p>
             <Navigation/>
         </div>
         

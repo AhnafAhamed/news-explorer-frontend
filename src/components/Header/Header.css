@@ -1,26 +1,55 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 104px;
-    margin: auto;
-    box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 104px;
+  margin: auto;
+  box-shadow: inset 0px -1px 0px rgba(255, 255, 255, 0.2);
 }
-.header_logo {
-    font-family: "roboto-slab";
-    font-weight: 700;
-    font-size: 20px;
-    padding: 30px 0 26px 0;
-    margin: 0;
-}
-
-@media (max-width: 768px) {
-    .header {
-        padding: 0 40px;
-    }
+.header__logo {
+  font-family: "roboto-slab";
+  font-weight: 700;
+  font-size: 20px;
+  padding: 30px 0 26px 0;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
-    .header {
-        padding: 0 40px;
-    }
+  .header {
+    padding: 0 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 0 40px;
+  }
+}
+
+.header_mobile {
+    position: fixed;
+    z-index: 2;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0;
+}
+
+.header_mobile .header__logo {
+  position: absolute;
+  z-index: 4;
+  top: 16px;
+  left: 16px;
+  padding: 0;
+}
+.header_mobile::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 56px;
+  z-index: 4;
+  box-shadow: inset 0px -1px 0px rgb(255 255 255 / 20%);
 }
