@@ -1,0 +1,13 @@
+.search-results {
+    padding: 40px;
+}
+.search-results__heading {
+    text-align: left;
+    font-family: "roboto-slab";
+    font-size: 30px;
+    line-height: 34px;
+    color: #1A1B22;
+    font-weight: 400;
+    margin: 0;
+    margin-bottom: 32px;
+}
