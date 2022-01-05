@@ -25,6 +25,12 @@
   }
 }
 
+@media (max-width: 320px) {
+  .header {
+    padding: 0 16px;
+  }
+}
+
 .header_mobile {
     position: fixed;
     z-index: 2;
@@ -44,7 +50,7 @@
 }
 .header_mobile::after {
   position: absolute;
-  content: "";
+  /* content: ""; */
   width: 100%;
   top: 0px;
   left: 0px;
