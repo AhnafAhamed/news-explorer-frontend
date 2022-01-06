@@ -1,0 +1,22 @@
+.news-card-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.news-card-list__button {
+    padding: 20px 98px;
+    font-family: "roboto";
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #1A1B22;
+    background-color: #FFF;
+    border-radius: 80px;
+    border: none;
+    cursor: pointer;
+}
+
+.news-card-list__button:hover {
+    background-color: #E8E8E8;
+}

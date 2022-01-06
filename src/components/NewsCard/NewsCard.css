@@ -1,0 +1,110 @@
+.news-card {
+    max-width: 400px;
+    border-radius: 16px;
+    background-color: #FFF;
+    margin-bottom: 64px;
+}
+
+.news-card__image-container {
+    position: relative;
+}
+
+.news-card__image {
+    border-radius: 16px 16px 0px 0px;
+    width: 100%;
+}
+
+.news-card__tag {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    margin: 0px;
+    font-family: "roboto";
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 24px;
+    color: #000;
+    padding: 8px 22px;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.news-card__action-prompt {
+    display: none;
+    position: absolute;
+    top: 24px;
+    right: 70px;
+    margin: 0px;
+    font-family: "roboto";
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 14px;
+    color: #000;
+    padding: 11px 26px;
+    background-color: #FFF;
+    border-radius: 10px;
+}
+
+.news-card__icon {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    cursor: pointer;
+}
+
+.news-card__icon_show {
+    display: block;
+}
+
+.news-card__icon_hide{
+    display: block;
+}
+
+.news-card__icon_bookmark:hover + .news-card__action-prompt {
+    display: block;
+}
+
+.news-card__text {
+    padding: 16px;
+    text-align: left;
+    max-width: 352px;
+}
+
+.news-card__date {
+    font-family: "roboto";
+    margin: 0px;
+    color: #B6BCBF;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+.news-card__heading {
+    font-family: "roboto-slab";
+    font-size: 26px;
+    line-height: 30px;
+    font-weight: 400;
+    margin: 0px;
+    margin-bottom: 16px;
+    color: #1A1B22;
+}
+
+.news-card__description {
+    font-family: "roboto";
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    margin-bottom: 18px;
+    color: #1A1B22;
+}
+
+.news-card__source {
+    font-family: "robot-slab";
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #B6BCBF;
+}
