@@ -20,3 +20,10 @@
 .news-card-list__button:hover {
     background-color: #E8E8E8;
 }
+
+@media (max-width: 400px) { 
+    .news-card-list__button {
+        padding: 16px 70px;
+        width: 100%;
+    }
+}

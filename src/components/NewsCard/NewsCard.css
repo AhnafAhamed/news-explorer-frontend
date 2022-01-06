@@ -2,6 +2,7 @@
     max-width: 400px;
     border-radius: 16px;
     background-color: #FFF;
+    margin: auto;
     margin-bottom: 64px;
 }
 
@@ -107,4 +108,16 @@
     letter-spacing: 0.4px;
     text-transform: uppercase;
     color: #B6BCBF;
+}
+
+@media (max-width: 768px) { 
+    .news-card {
+        max-width: 224px;
+    }
+}
+
+@media (max-width: 400px) { 
+    .news-card {
+        max-width: 288px;
+    }
 }
