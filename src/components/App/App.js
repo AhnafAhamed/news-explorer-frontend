@@ -1,3 +1,4 @@
+import { useState } from "react";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import FormInput from "../FormInput/FormInput";
@@ -9,10 +10,12 @@ import SearchResults from "../SearchResults/SearchResults";
 import "./App.css";
 
 function App() {
-  function hello(e) {
-    e.preventDefault();
-    console.log("button clicked");
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  function handleSignInClick() {
+    setIsPopupOpen(true);
   }
+
   const initialValues = {
     email: "",
     password: "",
@@ -21,18 +24,19 @@ function App() {
   return (
     <div className="App">
       <Main>
-        <Hero />
+        <Hero onSignInClick={handleSignInClick} />
         <SavedNews />
         <SearchResults />
         <About />
         <Footer />
       </Main>
       <PopupWithForm
+        isOpen={isPopupOpen}
+        formName="signin"
         title="Sign in"
         buttonText="Sign in"
         initialValues={initialValues}
         redirectText="Sign up"
-        formSubmit={hello}
       >
         <FormInput
           label="Email"
@@ -49,11 +53,11 @@ function App() {
       </PopupWithForm>
 
       <PopupWithForm
+        formName="signup"
         title="Sign up"
         buttonText="Sign up"
         initialValues={initialValues}
         redirectText="Sign in"
-        formSubmit={hello}
       >
         <FormInput
           label="Email"

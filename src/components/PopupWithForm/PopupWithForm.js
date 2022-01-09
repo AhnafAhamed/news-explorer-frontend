@@ -13,6 +13,8 @@ function PopupWithForm({
   initialValues,
   children,
   formSubmit,
+  formName,
+  isOpen,
 }) {
   const [form, setForm] = useState(initialValues);
 
@@ -22,8 +24,12 @@ function PopupWithForm({
     setForm({ ...form, [name]: value });
   };
   return (
-    <Popup onSubmit={formSubmit}>
-      <h6 className="popup-with-form__title">{title}</h6>
+    <Popup
+      title={title}
+      isOpen={isOpen}
+      onSubmit={formSubmit}
+      formName={formName}
+    >
       <form action="POST" className="popup-with-form__form">
         <FormContext.Provider value={{ form, handleFormChange }}>
           {children}
@@ -33,7 +39,10 @@ function PopupWithForm({
         </button>
       </form>
 
-      <p className="popup-with-form__redirect">or {redirectText}</p>
+      <p className="popup-with-form__redirect">
+        or{" "}
+        <span className="popup-with-form__redirect_text">{redirectText}</span>{" "}
+      </p>
     </Popup>
   );
 }

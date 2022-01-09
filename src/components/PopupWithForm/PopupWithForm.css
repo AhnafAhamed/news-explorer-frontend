@@ -1,0 +1,36 @@
+.popup-with-form {
+  text-align: left;
+}
+
+.popup-with-form__submit-button {
+  width: 100%;
+  border: none;
+  font-family: "roboto";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+  background-color: #e6e8eb;
+  padding: 20px;
+  border-radius: 100px;
+}
+
+.popup-with-form__redirect {
+  font-family: "inter";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  color: #1a1b22;
+  margin: 0px;
+  margin-top: 16px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.popup-with-form__redirect_text {
+  color: #2f71e5;
+}
+
+.popup-with-form__redirect_text:hover {
+  font-weight: 500;
+}
