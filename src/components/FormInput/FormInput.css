@@ -27,3 +27,9 @@
   padding: 10px;
   padding-left: 0px;
 }
+
+.form-input__input:focus {
+  outline: none;
+  color: black;
+  opacity: 1;
+}
