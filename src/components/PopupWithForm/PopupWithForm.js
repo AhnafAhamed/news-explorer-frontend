@@ -15,6 +15,9 @@ function PopupWithForm({
   formSubmit,
   formName,
   isOpen,
+  closeButtonClick,
+  onRedirectClick,
+  closeOnOverlayClick,
 }) {
   const [form, setForm] = useState(initialValues);
 
@@ -25,6 +28,8 @@ function PopupWithForm({
   };
   return (
     <Popup
+      closeOnOverlayClick={closeOnOverlayClick}
+      closeButtonClick={closeButtonClick}
       title={title}
       isOpen={isOpen}
       onSubmit={formSubmit}
@@ -41,7 +46,12 @@ function PopupWithForm({
 
       <p className="popup-with-form__redirect">
         or{" "}
-        <span className="popup-with-form__redirect_text">{redirectText}</span>{" "}
+        <span
+          className="popup-with-form__redirect_text"
+          onClick={onRedirectClick}
+        >
+          {redirectText}
+        </span>
       </p>
     </Popup>
   );

@@ -10,11 +10,43 @@ import SearchResults from "../SearchResults/SearchResults";
 import "./App.css";
 
 function App() {
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
+  const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
 
   function handleSignInClick() {
-    setIsPopupOpen(true);
+    setIsSignInPopupOpen(true);
   }
+
+  function handleCloseButtonClick() {
+    setIsSignInPopupOpen(false);
+    setIsSignUpPopupOpen(false);
+  }
+
+  function handleSignUpRedirect() {
+    setIsSignInPopupOpen(false);
+    setIsSignUpPopupOpen(true);
+  }
+
+  function handleSignInRedirect() {
+    setIsSignUpPopupOpen(false);
+    setIsSignInPopupOpen(true);
+  }
+
+  function handleCloseOnOverlayClick(e) {
+    if (e.target.classList.contains("popup_open")) {
+      setIsSignUpPopupOpen(false);
+      setIsSignInPopupOpen(false);
+    }
+  }
+
+  function handleCloseOnEscClick(e) {
+    if (e.key === "Escape") {
+      setIsSignUpPopupOpen(false);
+      setIsSignInPopupOpen(false);
+    }
+  }
+
+  document.addEventListener("keydown", handleCloseOnEscClick);
 
   const initialValues = {
     email: "",
@@ -31,7 +63,10 @@ function App() {
         <Footer />
       </Main>
       <PopupWithForm
-        isOpen={isPopupOpen}
+        closeOnOverlayClick={handleCloseOnOverlayClick}
+        closeButtonClick={handleCloseButtonClick}
+        onRedirectClick={handleSignUpRedirect}
+        isOpen={isSignInPopupOpen}
         formName="signin"
         title="Sign in"
         buttonText="Sign in"
@@ -53,6 +88,10 @@ function App() {
       </PopupWithForm>
 
       <PopupWithForm
+        closeOnOverlayClick={handleCloseOnOverlayClick}
+        closeButtonClick={handleCloseButtonClick}
+        onRedirectClick={handleSignInRedirect}
+        isOpen={isSignUpPopupOpen}
         formName="signup"
         title="Sign up"
         buttonText="Sign up"
