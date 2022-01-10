@@ -78,15 +78,29 @@
 .navigation_mobile {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   padding: 72px 0px 56px;
   width: 100%;
+  height: max-content;
+}
+
+.navigation_mobile .navigation__item_active {
+  border: none;
 }
 
 .navigation_mobile .navigation__item {
   display: block;
   margin: 0;
   width: calc(100% - 32px);
+}
+
+.navigation_mobile .navigation__item_signin {
+  padding: 16px;
+  width: calc(100% - 64px);
+}
+
+.navigation_mobile .navigation__item:not(:first-of-type) {
+  margin-top: 22px;
 }
 
 .navigation_mobile .navigation__item_active {
@@ -100,7 +114,6 @@
 .navigation_mobile .navigation__item_signout {
   display: none;
 }
-
 
 .navigation_mobile .navigation__close-mobile {
   display: block;
