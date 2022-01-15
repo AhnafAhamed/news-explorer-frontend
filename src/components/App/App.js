@@ -66,7 +66,7 @@ function App() {
             <About />
             <Footer />
           </Route>
-          <Route path="/savednews">
+          <Route path="/saved-news">
             <Header isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} />
             <SavedNews />
           </Route>
