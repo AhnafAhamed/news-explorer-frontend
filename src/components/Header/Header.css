@@ -47,6 +47,7 @@
   top: 16px;
   left: 16px;
   padding: 0;
+  color: #FFF;
 }
 .header_mobile::after {
   position: absolute;

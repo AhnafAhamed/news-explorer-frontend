@@ -9,6 +9,8 @@
   margin: 0;
   font-family: "roboto";
   font-weight: 500;
+  color: #fff;
+  text-decoration: none;
 }
 
 .navigation__item:not(:last-child) {
@@ -56,6 +58,10 @@
   display: none;
 }
 
+.navigation__menu-mobile_black {
+  filter: invert(1);
+}
+
 @media (max-width: 500px) {
   .navigation__item {
     display: none;
@@ -91,20 +97,18 @@
 .navigation_mobile .navigation__item {
   display: block;
   margin: 0;
-  width: calc(100% - 32px);
+  width: calc(100% - 64px);
+  text-align: left;
 }
 
 .navigation_mobile .navigation__item_signin {
   padding: 16px;
   width: calc(100% - 64px);
+  text-align: center;
 }
 
 .navigation_mobile .navigation__item:not(:first-of-type) {
   margin-top: 22px;
-}
-
-.navigation_mobile .navigation__item_active {
-  padding: 30px 8px 28px 8px;
 }
 
 .navigation_mobile .navigation__item_article {

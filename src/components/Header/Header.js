@@ -1,7 +1,7 @@
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 
-function Header({ onSignInClick }) {
+function Header({ onSignInClick, isLoggedIn }) {
   function handleMenuClick() {
     document.querySelector(".navigation").classList.add("navigation_mobile");
     document.querySelector(".header").classList.add("header_mobile");
@@ -16,6 +16,7 @@ function Header({ onSignInClick }) {
     <div className="header">
       <p className="header__logo">NewsExplorer</p>
       <Navigation
+        isLoggedIn={isLoggedIn}
         onMenuClick={handleMenuClick}
         onCloseClick={handleCloseClick}
         onSignInClick={onSignInClick}

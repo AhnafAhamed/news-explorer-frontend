@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import FormInput from "../FormInput/FormInput";
+import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Main from "../Main/Main";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
@@ -12,6 +14,7 @@ import "./App.css";
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
@@ -56,11 +59,18 @@ function App() {
   return (
     <div className="App">
       <Main>
-        <Hero onSignInClick={handleSignInClick} />
-        <SavedNews />
-        <SearchResults />
-        <About />
-        <Footer />
+        <Switch>
+          <Route exact path="/">
+            <Hero onSignInClick={handleSignInClick} />
+            <SearchResults />
+            <About />
+            <Footer />
+          </Route>
+          <Route path="/savednews">
+            <Header isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} />
+            <SavedNews />
+          </Route>
+        </Switch>
       </Main>
       <PopupWithForm
         closeOnOverlayClick={handleCloseOnOverlayClick}
@@ -121,4 +131,4 @@ function App() {
   );
 }
 
-export default App;
+export default withRouter(App);

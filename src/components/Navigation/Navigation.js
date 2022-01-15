@@ -1,16 +1,25 @@
 import "./Navigation.css";
 import menu from "../../images/menu.svg";
 import close from "../../images/close.svg";
+import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-function Navigation({ onMenuClick, onCloseClick, onSignInClick }) {
+function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn }) {
+  const route = useLocation();
   return (
     <nav className="navigation ">
-      <p className="navigation__item  navigation__item_home navigation__item_active">
+      <NavLink
+        to="/"
+        className="navigation__item  navigation__item_home navigation__item_active"
+      >
         Home
-      </p>
-      <p className="navigation__item navigation__item_article">
+      </NavLink>
+      <NavLink
+        to="/savednews"
+        className="navigation__item navigation__item_article"
+      >
         Saved Articles
-      </p>
+      </NavLink>
       <p
         className="navigation__item navigation__item_signin"
         onClick={onSignInClick}
@@ -22,7 +31,7 @@ function Navigation({ onMenuClick, onCloseClick, onSignInClick }) {
         src={menu}
         onClick={onMenuClick}
         alt="menu"
-        className="navigation__item navigation__menu-mobile"
+        className={`navigation__item navigation__menu-mobile ${route.pathname === "/savednews" ? 'navigation__menu-mobile_black' : 'g' } `}
       />
       <img
         src={close}
