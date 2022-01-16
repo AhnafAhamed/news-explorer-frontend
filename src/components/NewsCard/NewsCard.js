@@ -1,18 +1,17 @@
 import "./NewsCard.css";
 import image1 from "../../images/image_01.png";
-import deleteIcon from "../../images/delete.svg";
-import bookmarkIcon from "../../images/bookmark.svg";
 import { useLocation } from "react-router-dom";
 
 
 function NewsCard({isLoggedIn}) {
     const route = useLocation();
+
     return (
         <div className="news-card">
             <div className="news-card__image-container">
                 <img src={image1} alt="" className="news-card__image" />
                 <p className="news-card__tag">Nature</p>
-                { route.pathname === "/" ? <img src={bookmarkIcon} alt="bookmark" className="news-card__icon news-card__icon_bookmark" /> : <img src={deleteIcon} alt="delete" className="news-card__icon news-card__icon_delete" /> }
+                { route.pathname === "/" ? <button className="news-card__icon news-card__icon_bookmark"></button> : <button  className="news-card__icon news-card__icon_delete"></button> }
                 { !isLoggedIn ? <p className="news-card__action-prompt">Sign in to save articles</p> : ''}
             </div>
             <div className="news-card__text">
