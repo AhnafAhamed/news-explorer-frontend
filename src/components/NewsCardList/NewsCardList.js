@@ -1,7 +1,9 @@
+import { useLocation } from "react-router-dom";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
 function NewsCardList({isLoggedIn}) {
+    const route = useLocation();
     return (
         <div>
             <div className="news-card-list">
@@ -9,7 +11,7 @@ function NewsCardList({isLoggedIn}) {
                 <NewsCard isLoggedIn={isLoggedIn}/>
                 <NewsCard isLoggedIn={isLoggedIn}/>
             </div>
-            <button className="news-card-list__button">Show more</button>
+            { route.pathname === "/" ? <button className="news-card-list__button">Show more</button> : ''}
         </div>
     )
 }
