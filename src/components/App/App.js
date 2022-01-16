@@ -18,6 +18,7 @@ function App() {
 
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
+    setIsLoggedIn(true);
   }
 
   function handleCloseButtonClick() {
@@ -61,8 +62,8 @@ function App() {
       <Main>
         <Switch>
           <Route exact path="/">
-            <Hero onSignInClick={handleSignInClick} />
-            <SearchResults />
+            <Hero isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} />
+            <SearchResults isLoggedIn={isLoggedIn}/>
             <About />
             <Footer />
           </Route>
