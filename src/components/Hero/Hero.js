@@ -1,8 +1,7 @@
 import "./Hero.css";
 import Header from "../Header/Header";
-import SearchForm from "../SearchForm/SearchForm";
 
-function Hero({ onSignInClick, isLoggedIn, onSignOutClick }) {
+function Hero({ onSignInClick, isLoggedIn, onSignOutClick, children }) {
   return (
     <div className="hero">
       <Header isLoggedIn={isLoggedIn} onSignOutClick={onSignOutClick} onSignInClick={onSignInClick} />
@@ -13,7 +12,7 @@ function Hero({ onSignInClick, isLoggedIn, onSignOutClick }) {
           account.
         </p>
       </div>
-      <SearchForm />
+      {children}
     </div>
   );
 }

@@ -8,7 +8,9 @@ import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Main from "../Main/Main";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
+import Preloader from "../Preloader/Preloader";
 import SavedNews from "../SavedNews/SavedNews";
+import SearchForm from "../SearchForm/SearchForm";
 import SearchResults from "../SearchResults/SearchResults";
 import "./App.css";
 
@@ -16,21 +18,28 @@ function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [searchData, setSearchData] = useState([]);
+  const [searchData, setSearchData] = useState({});
+  const [buttonClick, setButtonClicked] = useState(false);
 
   const today = new Date().toLocaleDateString();
 
   const pastDate = new Date();
-  pastDate.setDate(pastDate.getDate() - 7)
+  pastDate.setDate(pastDate.getDate() - 7);
 
-  useEffect(() => {
-    newsApi.searchKeyword("apple",pastDate.toLocaleDateString(), today).then((data) => {
-      console.log(data)
-      setSearchData(data);
-    }).catch((err) => {
-      console.log(err)
-    })
-  }, [])
+  useEffect(() => {}, []);
+
+  function handleSearch({ keyword }) {
+    setButtonClicked(true);
+    newsApi
+      .searchKeyword(keyword, pastDate.toLocaleDateString(), today)
+      .then((data) => {
+        setSearchData(data);
+        console.log(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
@@ -82,15 +91,31 @@ function App() {
       <Main>
         <Switch>
           <Route exact path="/">
-            <Hero onSignOutClick={handleSignOutClick} isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} />
-            <SearchResults isLoggedIn={isLoggedIn}/>
+
+            <Hero
+              onSignOutClick={handleSignOutClick}
+              isLoggedIn={isLoggedIn}
+              onSignInClick={handleSignInClick}
+            >
+            <SearchForm onSearch={handleSearch} />
+            </Hero>
+
+            {searchData.status === "ok" ? (
+              <SearchResults isLoggedIn={isLoggedIn} />
+            ) : ''}
+            {buttonClick && searchData.status !== "ok" ? <Preloader/> : ''}
+
             <About />
             <Footer />
           </Route>
           <Route path="/saved-news">
-            <Header onSignOutClick={handleSignOutClick} isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} />
+            <Header
+              onSignOutClick={handleSignOutClick}
+              isLoggedIn={isLoggedIn}
+              onSignInClick={handleSignInClick}
+            />
             <SavedNews />
-            <Footer/>
+            <Footer />
           </Route>
         </Switch>
       </Main>
