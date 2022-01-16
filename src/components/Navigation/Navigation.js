@@ -6,8 +6,9 @@ import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn, onSignOutClick }) {
-  console.log(isLoggedIn);
+  
   const route = useLocation();
+  
   return (
     <nav className={`navigation ${route.pathname === "/saved-news" ? "navigation_dark" : ""}  `}>
       <NavLink
