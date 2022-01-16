@@ -53,14 +53,6 @@
     cursor: pointer;
 }
 
-.news-card__icon_show {
-    display: block;
-}
-
-.news-card__icon_hide{
-    display: block;
-}
-
 .news-card__icon_bookmark:hover + .news-card__action-prompt {
     display: block;
 }
