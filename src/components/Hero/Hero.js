@@ -2,10 +2,10 @@ import "./Hero.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Hero({ onSignInClick, isLoggedIn }) {
+function Hero({ onSignInClick, isLoggedIn, onSignOutClick }) {
   return (
     <div className="hero">
-      <Header isLoggedIn={isLoggedIn} onSignInClick={onSignInClick} />
+      <Header isLoggedIn={isLoggedIn} onSignOutClick={onSignOutClick} onSignInClick={onSignInClick} />
       <div className="hero__text">
         <h1 className="hero__title">What's going on in the world?</h1>
         <p className="hero__description">

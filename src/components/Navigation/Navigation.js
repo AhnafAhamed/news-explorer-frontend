@@ -5,7 +5,7 @@ import signout from "../../images/signout.svg";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
-function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn }) {
+function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn, onSignOutClick }) {
   console.log(isLoggedIn);
   const route = useLocation();
   return (
@@ -36,9 +36,9 @@ function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn }) {
           Sign in
         </p>
       ) : (
-        <div className="navigation__item navigation__item_signout">
-          <p className="navigation__item_signout-text">Elise</p> <img className="navigation__item_signout-image" src={signout} alt="" />
-        </div>
+        <button className="navigation__item navigation__item_signout" onClick={onSignOutClick}>
+          <p className="navigation__item_signout-text">Elise</p> <img  className="navigation__item_signout-image" src={signout} alt="" />
+        </button>
       )}
 
       <img
