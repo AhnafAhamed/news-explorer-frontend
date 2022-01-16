@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
+import newsApi from "../../utils/NewsApi";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
 import FormInput from "../FormInput/FormInput";
@@ -15,6 +16,21 @@ function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchData, setSearchData] = useState([]);
+
+  const today = new Date().toLocaleDateString();
+
+  const pastDate = new Date();
+  pastDate.setDate(pastDate.getDate() - 7)
+
+  useEffect(() => {
+    newsApi.searchKeyword("apple",pastDate.toLocaleDateString(), today).then((data) => {
+      console.log(data)
+      setSearchData(data);
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
 
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
