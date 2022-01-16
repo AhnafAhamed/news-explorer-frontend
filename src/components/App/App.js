@@ -74,6 +74,7 @@ function App() {
           <Route path="/saved-news">
             <Header onSignOutClick={handleSignOutClick} isLoggedIn={isLoggedIn} onSignInClick={handleSignInClick} />
             <SavedNews />
+            <Footer/>
           </Route>
         </Switch>
       </Main>
