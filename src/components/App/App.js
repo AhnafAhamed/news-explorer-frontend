@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import newsApi from "../../utils/NewsApi";
 import About from "../About/About";
@@ -19,25 +19,25 @@ function App() {
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchData, setSearchData] = useState({});
-  const [buttonClick, setButtonClicked] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const today = new Date().toLocaleDateString();
-
   const pastDate = new Date();
   pastDate.setDate(pastDate.getDate() - 7);
 
-  useEffect(() => {}, []);
-
   function handleSearch({ keyword }) {
-    setButtonClicked(true);
+    setIsLoading(true);
+    setSearchData({});
     newsApi
       .searchKeyword(keyword, pastDate.toLocaleDateString(), today)
       .then((data) => {
         setSearchData(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -91,19 +91,23 @@ function App() {
       <Main>
         <Switch>
           <Route exact path="/">
-
             <Hero
               onSignOutClick={handleSignOutClick}
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
             >
-            <SearchForm onSearch={handleSearch} />
+              <SearchForm onSearch={handleSearch} />
             </Hero>
 
             {searchData.status === "ok" ? (
-              <SearchResults isLoggedIn={isLoggedIn} />
-            ) : ''}
-            {buttonClick && searchData.status !== "ok" ? <Preloader/> : ''}
+              <SearchResults
+                newsCards={searchData.articles}
+                isLoggedIn={isLoggedIn}
+              />
+            ) : (
+              ""
+            )}
+            {isLoading ? <Preloader /> : ""}
 
             <About />
             <Footer />
