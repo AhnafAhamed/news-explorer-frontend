@@ -12,3 +12,9 @@
     margin: 0;
     margin-bottom: 32px;
 }
+
+@media (max-width: 400px) {
+    .search-results {
+        padding: 32px 16px 24px;
+    }
+  }

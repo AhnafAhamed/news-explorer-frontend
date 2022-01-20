@@ -45,6 +45,12 @@
   margin-right: 24px;
 }
 
+@media (min-width: 1600px) {
+  .footer {
+    width: 70%;
+  }
+}
+
 @media (max-width: 850px) {
   .footer {
     width: calc(100% - 80px);
