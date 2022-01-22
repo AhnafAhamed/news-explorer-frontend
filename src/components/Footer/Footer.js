@@ -12,7 +12,7 @@ function Footer() {
       <p className="footer__copyrights">
         © 2021 Supersite, Powered by News API
       </p>
-      <div className="footer__navigation">
+      <nav className="footer__navigation">
         <div className="footer__links">
           <NavLink to="/" className="footer__link">
             Home
@@ -44,7 +44,7 @@ function Footer() {
             <img src={fbIcon} alt="facebook" />
           </a>
         </div>
-      </div>
+      </nav>
     </footer>
   );
 }

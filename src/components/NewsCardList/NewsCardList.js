@@ -29,7 +29,7 @@ function NewsCardList({ isLoggedIn, newsCards }) {
 
   return (
     <div>
-      <div className="news-card-list">
+      <ul className="news-card-list">
         {postsToShow.map((newsCard, index) => (
           <NewsCard
             key={index}
@@ -41,7 +41,7 @@ function NewsCardList({ isLoggedIn, newsCards }) {
             isLoggedIn={isLoggedIn}
           />
         ))}
-      </div>
+      </ul>
       {route.pathname === "/" && postsToShow.length !== newsCards.length ? (
         <button onClick={handleShowMorePosts} className="news-card-list__button">
           Show more

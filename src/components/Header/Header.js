@@ -13,7 +13,7 @@ function Header({ onSignInClick, isLoggedIn, onSignOutClick }) {
   }
 
   return (
-    <div className="header">
+    <header className="header">
       <p className="header__logo">NewsExplorer</p>
       <Navigation
         onSignOutClick={onSignOutClick}
@@ -22,7 +22,7 @@ function Header({ onSignInClick, isLoggedIn, onSignOutClick }) {
         onCloseClick={handleCloseClick}
         onSignInClick={onSignInClick}
       />
-    </div>
+    </header>
   );
 }
 

@@ -22,6 +22,11 @@
   line-height: 24px;
   font-family: "roboto";
   font-weight: 400;
+  margin: 0px;
+}
+
+.about__paragraph:not(:last-child) {
+  margin-bottom: 10px;
 }
 @media (min-width: 1600px) {
   .about {
@@ -50,9 +55,6 @@
   .about__title {
     margin-top: 24px;
     margin-bottom: 16px;
-  }
-  .about__paragraph {
-    margin: 0;
   }
 }
 

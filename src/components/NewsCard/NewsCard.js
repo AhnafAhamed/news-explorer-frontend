@@ -10,7 +10,7 @@ function NewsCard({isLoggedIn, image, source, date, title, description,category 
       }
 
     return (
-        <div className="news-card">
+        <li className="news-card">
             <div className="news-card__image-container">
                 <img src={image} alt="" className="news-card__image" />
                 { route.pathname === "/saved-news" ? <p className="news-card__tag">{category}</p> : ""}
@@ -25,7 +25,7 @@ function NewsCard({isLoggedIn, image, source, date, title, description,category 
                 </p>
                 <p className="news-card__source">{source}</p>
             </div>
-        </div>
+        </li>
     )
 }
 
