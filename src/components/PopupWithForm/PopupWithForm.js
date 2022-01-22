@@ -13,7 +13,7 @@ function PopupWithForm({
   initialValues,
   children,
   formSubmit,
-  formName,
+  popupName,
   isOpen,
   closeButtonClick,
   onRedirectClick,
@@ -33,7 +33,7 @@ function PopupWithForm({
       title={title}
       isOpen={isOpen}
       onSubmit={formSubmit}
-      formName={formName}
+      popupName={popupName}
     >
       <form action="POST" className="popup-with-form__form">
         <FormContext.Provider value={{ form, handleFormChange }}>

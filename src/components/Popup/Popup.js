@@ -2,7 +2,7 @@ import "./Popup.css";
 
 function Popup({
   children,
-  formName,
+  popupName,
   isOpen,
   title,
   closeButtonClick,
@@ -11,7 +11,7 @@ function Popup({
   return (
     <div
       onClick={closeOnOverlayClick}
-      className={`popup popup__${formName} ${isOpen ? "popup_open" : ""}`}
+      className={`popup popup__${popupName} ${isOpen ? "popup_open" : ""}`}
     >
       <div className="popup__container">
         <h6 className="popup__title">{title}</h6>
