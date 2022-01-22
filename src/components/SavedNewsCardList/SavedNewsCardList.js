@@ -4,7 +4,7 @@ import "./SavedNewsCardList.css";
 function SavedNewsCardList({ savedNewsCards, isLoggedIn }) {
   return (
     <div className="saved-news-card-list">
-      {savedNewsCards.map((savedNewsCard, index) => {
+      {savedNewsCards.map((savedNewsCard, index) => (
         <NewsCard
           key={index}
           image={savedNewsCard.urlToImage}
@@ -13,8 +13,8 @@ function SavedNewsCardList({ savedNewsCards, isLoggedIn }) {
           title={savedNewsCard.title}
           description={savedNewsCard.description}
           isLoggedIn={isLoggedIn}
-        />;
-      })}
+        />
+      ))}
     </div>
   );
 }
