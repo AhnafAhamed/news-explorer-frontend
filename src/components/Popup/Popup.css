@@ -53,6 +53,18 @@
   cursor: pointer;
 }
 
+.popup__success-text {
+  font-family:"inter" ;
+  font-size: 18px;
+  line-height: 22px;
+  color: #2f71e5;
+  margin: 0px;
+}
+
+.popup__success .popup__title {
+  margin-bottom: 14px;
+}
+
 @media (max-width: 535px) {
   .popup {
     align-items: flex-end;

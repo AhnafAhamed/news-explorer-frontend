@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { Route, Switch, withRouter } from "react-router-dom";
 import newsApi from "../../utils/NewsApi";
 import About from "../About/About";
@@ -7,6 +8,7 @@ import FormInput from "../FormInput/FormInput";
 import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Main from "../Main/Main";
+import Popup from "../Popup/Popup";
 import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import Preloader from "../Preloader/Preloader";
 import SavedNews from "../SavedNews/SavedNews";
@@ -17,6 +19,7 @@ import "./App.css";
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
+  const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchData, setSearchData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -42,7 +45,6 @@ function App() {
       });
   }
 
-
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
     setIsLoggedIn(true);
@@ -51,11 +53,13 @@ function App() {
 
   function handleSignOutClick() {
     setIsLoggedIn(false);
+    setIsSuccessPopupOpen(true);
   }
 
   function handleCloseButtonClick() {
     setIsSignInPopupOpen(false);
     setIsSignUpPopupOpen(false);
+    setIsSuccessPopupOpen(false);
   }
 
   function handleSignUpRedirect() {
@@ -72,6 +76,7 @@ function App() {
     if (e.target.classList.contains("popup_open")) {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);
+      setIsSuccessPopupOpen(false);
     }
   }
 
@@ -79,6 +84,7 @@ function App() {
     if (e.key === "Escape") {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);
+      setIsSuccessPopupOpen(false);
     }
   }
 
@@ -121,17 +127,26 @@ function App() {
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
             />
-            <SavedNews savedNewsCards={savedNews} isLoggedIn={isLoggedIn}/>
+            <SavedNews savedNewsCards={savedNews} isLoggedIn={isLoggedIn} />
             <Footer />
           </Route>
         </Switch>
       </Main>
+      <Popup
+        popupName="success"
+        closeOnOverlayClick={handleCloseOnOverlayClick}
+        closeButtonClick={handleCloseButtonClick}
+        isOpen={isSuccessPopupOpen}
+        title="Registration successfully completed!"
+      >
+        <p className="popup__success-text" onClick={handleSignInClick}>Sign in</p>
+      </Popup>
       <PopupWithForm
         closeOnOverlayClick={handleCloseOnOverlayClick}
         closeButtonClick={handleCloseButtonClick}
         onRedirectClick={handleSignUpRedirect}
         isOpen={isSignInPopupOpen}
-        formName="signin"
+        popupName="signin"
         title="Sign in"
         buttonText="Sign in"
         initialValues={initialValues}
@@ -156,7 +171,7 @@ function App() {
         closeButtonClick={handleCloseButtonClick}
         onRedirectClick={handleSignInRedirect}
         isOpen={isSignUpPopupOpen}
-        formName="signup"
+        popupName="signup"
         title="Sign up"
         buttonText="Sign up"
         initialValues={initialValues}
