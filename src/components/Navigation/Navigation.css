@@ -15,7 +15,7 @@
 .navigation__item {
   position: relative;
   margin: 0;
-  font-family: "roboto";
+  font-family: "roboto", Sans-Serif;
   font-weight: 500;
   color: #fff;
   text-decoration: none;

@@ -6,7 +6,7 @@
 }
 
 .search-form__input {
-    font-family: "roboto";
+    font-family: "roboto", Sans-Serif;
     font-weight: 400;
     font-size: 16px;
     line-height: 22px;
@@ -36,7 +36,7 @@
     padding: 20px 56px;
     border-radius: 100px;
     color: #fff;
-    font-family: "roboto";
+    font-family: "roboto", Sans-Serif;
     font-weight: 500;
     font-size: 18px;
     line-height: 24px;

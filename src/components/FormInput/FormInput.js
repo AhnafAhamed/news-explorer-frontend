@@ -16,6 +16,7 @@ function FormInput({ label, type, name, placeholder }) {
         placeholder={placeholder}
         onChange={handleFormChange}
         className="form-input__input"
+        required
       />
     </div>
   );
