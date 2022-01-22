@@ -1,7 +1,7 @@
 .news-card-list {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 8px;
 }
 
 .news-card-list__button {
@@ -32,5 +32,17 @@
   .news-card-list {
     width: 85%;
     margin: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .news-card-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .news-card-list {
+    grid-template-columns: 1fr;
   }
 }
