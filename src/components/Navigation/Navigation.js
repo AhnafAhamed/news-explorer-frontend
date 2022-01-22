@@ -13,7 +13,7 @@ function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn, onSi
     <nav className={`navigation ${route.pathname === "/saved-news" ? "navigation_dark" : ""}  `}>
       <NavLink
         to="/"
-        className={`navigation__item  navigation__item_home  ${route.pathname === "/" ? "navigation__item_active" : ""}`}
+        className={`navigation__item  navigation__item-home  ${route.pathname === "/" ? "navigation__item_active" : ""}`}
       >
         Home
       </NavLink>
@@ -21,7 +21,7 @@ function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn, onSi
       {isLoggedIn ? (
         <NavLink
           to="/saved-news"
-          className={`navigation__item navigation__item_article ${route.pathname === "/saved-news" ? "navigation__item_active" : ""}`}
+          className={`navigation__item navigation__item-article ${route.pathname === "/saved-news" ? "navigation__item_active" : ""}`}
         >
           Saved Articles
         </NavLink>
@@ -31,14 +31,14 @@ function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn, onSi
 
       {!isLoggedIn ? (
         <p
-          className="navigation__item navigation__item_signin"
+          className="navigation__item navigation__item-signin"
           onClick={onSignInClick}
         >
           Sign in
         </p>
       ) : (
-        <button className="navigation__item navigation__item_signout" onClick={onSignOutClick}>
-          <p className="navigation__item_signout-text">Elise</p> <img  className="navigation__item_signout-image" src={signout} alt="" />
+        <button className="navigation__item navigation__item-signout" onClick={onSignOutClick}>
+          <p className="navigation__item-signout-text">Elise</p> <img  className="navigation__item-signout-image" src={signout} alt="" />
         </button>
       )}
 
@@ -46,9 +46,9 @@ function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn, onSi
         src={menu}
         onClick={onMenuClick}
         alt="menu"
-        className={`navigation__item navigation__menu-mobile ${
+        className={`navigation__item navigation__item-hamburger ${
           route.pathname === "/saved-news"
-            ? "navigation__menu-mobile_black"
+            ? "navigation__item-hamburger_black"
             : ""
         } `}
       />
@@ -57,7 +57,7 @@ function Navigation({ onMenuClick, onCloseClick, onSignInClick, isLoggedIn, onSi
         src={close}
         onClick={onCloseClick}
         alt="close"
-        className="navigation__close-mobile"
+        className="navigation__item-close-icon"
       />
     </nav>
   );

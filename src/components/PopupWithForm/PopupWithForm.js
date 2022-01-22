@@ -44,10 +44,10 @@ function PopupWithForm({
         </button>
       </form>
 
-      <p className="popup-with-form__redirect">
+      <p className="popup__redirect">
         or{" "}
         <span
-          className="popup-with-form__redirect_text"
+          className="popup__redirect-text"
           onClick={onRedirectClick}
         >
           {redirectText}
