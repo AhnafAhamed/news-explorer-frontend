@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
@@ -12,15 +12,15 @@ function NewsCardList({ isLoggedIn, newsCards }) {
   const [postsToShow, setPostsToShow] = useState([]);
   const [next, setNext] = useState(3);
 
-  const loopWithSlice = (start, end) => {
+  const loopWithSlice = useCallback((start, end) => {
     const slicedPosts = newsCards.slice(start, end);
     arrayForHoldingPosts = [...arrayForHoldingPosts, ...slicedPosts];
     setPostsToShow(arrayForHoldingPosts);
-  };
+  }, [newsCards]);
 
   useEffect(() => {
     loopWithSlice(0, postsPerPage);
-  }, []);
+  }, [loopWithSlice]);
 
   const handleShowMorePosts = () => {
     loopWithSlice(next, next + postsPerPage);
