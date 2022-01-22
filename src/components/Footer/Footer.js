@@ -2,10 +2,13 @@ import "./Footer.css";
 import fbIcon from "../../images/fb.svg";
 import githubIcon from "../../images/github.svg";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 function Footer() {
+  const route = useLocation();
+
   return (
-    <footer className="footer">
+    <footer className={`footer ${route.pathname === '/saved-news' ? "footer_fixed" : ""}`}>
       <p className="footer__copyrights">
         © 2021 Supersite, Powered by News API
       </p>

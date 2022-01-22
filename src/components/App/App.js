@@ -20,6 +20,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchData, setSearchData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [savedNews, setSavedNews] = useState([]);
 
   const today = new Date().toLocaleDateString();
   const pastDate = new Date();
@@ -41,9 +42,11 @@ function App() {
       });
   }
 
+
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
     setIsLoggedIn(true);
+    setSavedNews([]);
   }
 
   function handleSignOutClick() {
@@ -118,7 +121,7 @@ function App() {
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
             />
-            <SavedNews />
+            <SavedNews savedNewsCards={savedNews} isLoggedIn={isLoggedIn}/>
             <Footer />
           </Route>
         </Switch>
