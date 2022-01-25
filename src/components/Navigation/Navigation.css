@@ -12,6 +12,7 @@
   border-color: #1A1B22;
 }
 
+
 .navigation__item {
   position: relative;
   margin: 0;
@@ -93,6 +94,13 @@
   .navigation__item-hamburger {
     display: block;
     cursor: pointer;
+  }
+  .navigation_dark .navigation__item{
+    color: #FFF;
+  }
+  
+  .navigation_dark .navigation__item_active {
+    border-color: none;
   }
 }
 

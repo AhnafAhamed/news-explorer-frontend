@@ -28,7 +28,7 @@
 
 @media (min-width: 1600px) {
   .search-results__heading {
-    width: 85%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
   }
