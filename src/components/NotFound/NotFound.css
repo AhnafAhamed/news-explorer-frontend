@@ -1,0 +1,19 @@
+.not-found {
+    padding: 40px 0px;
+}
+.not-found__title {
+  font-family: "roboto-slab", Sans-Serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 30px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.not-found__description {
+  font-family: "roboto", Sans-Serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: center;
+}
