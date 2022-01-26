@@ -2,11 +2,8 @@ import "./Footer.css";
 import fbIcon from "../../images/fb.svg";
 import githubIcon from "../../images/github.svg";
 import { NavLink } from "react-router-dom";
-import { useLocation } from "react-router-dom";
 
 function Footer() {
-  const route = useLocation();
-
   return (
     <footer className="footer">
       <p className="footer__copyrights">
