@@ -21,7 +21,7 @@
   top: 24px;
   left: 24px;
   margin: 0px;
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   font-size: 14px;
   font-weight: 500;
   line-height: 24px;
@@ -37,7 +37,7 @@
   top: 24px;
   right: 70px;
   margin: 0px;
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   font-size: 12px;
   font-weight: 500;
   line-height: 14px;
@@ -51,7 +51,7 @@
   position: absolute;
   top: 24px;
   right: 24px;
-  cursor: pointer;
+  cursor: poInter;
 }
 
 .news-card__icon-bookmark {
@@ -95,7 +95,7 @@
 }
 
 .news-card__date {
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   margin: 0px;
   color: #b6bcbf;
   font-size: 18px;
@@ -105,7 +105,7 @@
 }
 
 .news-card__heading {
-  font-family: "roboto-slab", Sans-Serif;
+  font-family: "Roboto Slab", Sans-Serif;
   font-size: 26px;
   line-height: 30px;
   font-weight: 400;
@@ -120,7 +120,7 @@
 }
 
 .news-card__description {
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 22px;

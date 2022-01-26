@@ -8,7 +8,7 @@
 
 .news-card-list__button {
   padding: 20px 98px;
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
@@ -16,7 +16,7 @@
   background-color: #fff;
   border-radius: 80px;
   border: none;
-  cursor: pointer;
+  cursor: poInter;
 }
 
 .news-card-list__button:hover {

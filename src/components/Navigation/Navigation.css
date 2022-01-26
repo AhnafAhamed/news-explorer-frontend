@@ -16,7 +16,7 @@
 .navigation__item {
   position: relative;
   margin: 0;
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   font-weight: 500;
   color: #fff;
   text-decoration: none;
@@ -38,7 +38,7 @@
   padding: 12px;
   width: 152px;
   line-height: 24px;
-  cursor: pointer;
+  cursor: poInter;
   background-color: transparent;
 }
 
@@ -51,7 +51,7 @@
 
 .navigation__item-signout {
   display: flex;
-  cursor: pointer;
+  cursor: poInter;
   border: 1px solid #D1D2D6;
   padding: 8px 15px;
   border-radius: 100px;
@@ -93,7 +93,7 @@
   }
   .navigation__item-hamburger {
     display: block;
-    cursor: pointer;
+    cursor: poInter;
   }
   .navigation_dark .navigation__item{
     color: #FFF;

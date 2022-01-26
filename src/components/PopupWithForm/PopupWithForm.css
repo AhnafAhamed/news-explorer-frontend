@@ -5,7 +5,7 @@
 .popup__submit-button {
   width: 100%;
   border: none;
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
@@ -22,7 +22,7 @@
 }
 
 .popup__redirect {
-  font-family: "inter", Sans-Serif;
+  font-family: "Inter", Sans-Serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
@@ -30,7 +30,7 @@
   margin: 0px;
   margin-top: 16px;
   text-align: center;
-  cursor: pointer;
+  cursor: poInter;
 }
 
 .popup__redirect-text {

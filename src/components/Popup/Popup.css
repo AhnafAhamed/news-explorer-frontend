@@ -29,7 +29,7 @@
 }
 
 .popup__title {
-  font-family: "roboto", Sans-Serif;
+  font-family: "Roboto", Sans-Serif;
   font-weight: 900;
   font-size: 24px;
   line-height: 28px;
@@ -50,11 +50,11 @@
   height: 40px;
   width: 40px;
   padding: 0px;
-  cursor: pointer;
+  cursor: poInter;
 }
 
 .popup_type_success-text {
-  font-family:"inter", Sans-Serif ;
+  font-family:"Inter", Sans-Serif ;
   font-size: 18px;
   line-height: 22px;
   color: #2f71e5;
