@@ -1,16 +1,33 @@
 .preloader {
-	position: relative;
+	margin: 0;
+	overflow: hidden;
+	width: 100%;
+	padding: 80px 0px;
+	background-color: #F5F6F7;
 }
 .preloader__icon {
 	display: block;
-	width: 50px;
-	height: 50px;
-	border: 4px solid #444;
-	border-bottom-color: #888;
+	border: 1px double transparent;
 	border-radius: 50%;
 	margin: auto;
-	margin-top: 50px;
 	animation: spin .75s infinite linear;
+	background-image: linear-gradient(rgba(245, 246, 247, 1), rgba(245, 246, 247, 1)), conic-gradient(rgba(245, 246, 247, 1),rgba(26, 27, 34, 1));
+	background-color: transparent;
+	background-origin: border-box;
+	background-clip: content-box, border-box;
+	width: 74px;
+	height: 74px;
+	opacity: 1;
+}
+
+.preloader__text {
+	font-family: "roboto", Sans-Serif;
+	margin: 0px;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 24px;
+	text-align: center;
+	margin-top: 24px;
 }
 
 @keyframes spin {
