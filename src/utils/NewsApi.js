@@ -12,7 +12,7 @@ class NewsApi {
   }
 
   searchKeyword(keyword, date, currentDate) {
-    return fetch(this.baseUrl + `/everything?q=${keyword}&pageSize=6&from=${date}&to=${currentDate}`, {
+    return fetch(this.baseUrl + `/everything?q=${keyword}&pageSize=100&from=${date}&to=${currentDate}`, {
       headers: this.headers,
       method: "GET",
     }).then((res) => this._checkResponse(res));
