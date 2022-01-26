@@ -3,7 +3,7 @@
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: 8px;
   list-style: none;
-  padding: 0px;
+  padding: 40px;
 }
 
 @media (min-width: 1600px) {
@@ -22,5 +22,11 @@
   @media (max-width: 500px) {
     .saved-news-card-list {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .saved-news-card-list {
+      padding: 32px 16px 24px;
     }
   }
