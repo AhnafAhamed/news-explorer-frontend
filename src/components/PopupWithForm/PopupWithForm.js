@@ -35,11 +35,11 @@ function PopupWithForm({
       onSubmit={formSubmit}
       popupName={popupName}
     >
-      <form action="POST" className="popup-with-form__form">
+      <form action="POST" className="popup__form">
         <FormContext.Provider value={{ form, handleFormChange }}>
           {children}
         </FormContext.Provider>
-        <button type="submit" className="popup-with-form__submit-button">
+        <button type="submit" className="popup__submit-button">
           {buttonText}
         </button>
       </form>

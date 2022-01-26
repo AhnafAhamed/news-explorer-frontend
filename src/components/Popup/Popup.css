@@ -53,7 +53,7 @@
   cursor: pointer;
 }
 
-.popup__success-text {
+.popup_type_success-text {
   font-family:"inter", Sans-Serif ;
   font-size: 18px;
   line-height: 22px;
@@ -61,7 +61,7 @@
   margin: 0px;
 }
 
-.popup__success .popup__title {
+.popup_type_success .popup__title {
   margin-bottom: 14px;
 }
 

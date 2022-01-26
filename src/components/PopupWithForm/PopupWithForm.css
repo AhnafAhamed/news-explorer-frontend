@@ -1,8 +1,8 @@
-.popup-with-form {
+.popup {
   text-align: left;
 }
 
-.popup-with-form__submit-button {
+.popup__submit-button {
   width: 100%;
   border: none;
   font-family: "roboto", Sans-Serif;
@@ -15,7 +15,7 @@
   border-radius: 100px;
 }
 
-.popup-with-form__submit-button_active {
+.popup__submit-button_active {
   background-color: #2f71e5;
   color: #fff;
   box-shadow: 0px 5px 15px rgba(14, 26, 57, 0.2);

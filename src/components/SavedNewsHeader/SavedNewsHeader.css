@@ -34,3 +34,11 @@
 .saved-news-header__description_keywords {
     font-weight: 700;
 }
+
+@media (min-width: 1600px) {
+  .saved-news-header {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

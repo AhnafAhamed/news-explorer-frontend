@@ -9,13 +9,6 @@
   padding: 30px 0px 28px 0px;
 }
 
-.footer_fixed {
-  position: absolute;
-  bottom: 0px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
 .footer__navigation {
   display: flex;
   align-items: center;

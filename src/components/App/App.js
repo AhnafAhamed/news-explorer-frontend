@@ -13,6 +13,8 @@ import Preloader from "../Preloader/Preloader";
 import SavedNews from "../SavedNews/SavedNews";
 import SearchForm from "../SearchForm/SearchForm";
 import SearchResults from "../SearchResults/SearchResults";
+import SavedNewsData from "../../data/SavedNews.json";
+
 import "./App.css";
 
 function App() {
@@ -126,7 +128,7 @@ function App() {
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
             />
-            <SavedNews savedNewsCards={savedNews} isLoggedIn={isLoggedIn} />
+            <SavedNews savedNewsCards={SavedNewsData.articles} isLoggedIn={isLoggedIn} />
             <Footer />
           </Route>
         </Switch>
@@ -138,7 +140,7 @@ function App() {
         isOpen={isSuccessPopupOpen}
         title="Registration successfully completed!"
       >
-        <p className="popup__success-text" onClick={handleSignInClick}>Sign in</p>
+        <p className="popup_type_success-text" onClick={handleSignInClick}>Sign in</p>
       </Popup>
       <PopupWithForm
         closeOnOverlayClick={handleCloseOnOverlayClick}

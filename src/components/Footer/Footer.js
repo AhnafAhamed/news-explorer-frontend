@@ -8,7 +8,7 @@ function Footer() {
   const route = useLocation();
 
   return (
-    <footer className={`footer ${route.pathname === '/saved-news' ? "footer_fixed" : ""}`}>
+    <footer className="footer">
       <p className="footer__copyrights">
         © 2021 Supersite, Powered by News API
       </p>

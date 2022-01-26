@@ -13,6 +13,7 @@ function SavedNewsCardList({ savedNewsCards, isLoggedIn }) {
           title={savedNewsCard.title}
           description={savedNewsCard.description}
           isLoggedIn={isLoggedIn}
+          category="Apple"
         />
       ))}
     </div>

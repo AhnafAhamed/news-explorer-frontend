@@ -11,7 +11,7 @@ function Popup({
   return (
     <div
       onClick={closeOnOverlayClick}
-      className={`popup popup_${popupName} ${isOpen ? "popup_open" : ""}`}
+      className={`popup popup_type_${popupName} ${isOpen ? "popup_open" : ""}`}
     >
       <div className="popup__container">
         <h6 className="popup__title">{title}</h6>
