@@ -1,0 +1,52 @@
+.hero {
+    background-image: url("../../images/hero_image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 576px;
+    color: #fff;
+}
+.hero__text {
+    max-width: 608px;
+    margin: auto;
+    text-align: left;
+}
+.hero__title {
+    font-family: "Roboto Slab", Sans-Serif;
+    font-weight: 400;
+    font-size: 60px;
+    line-height: 64px;
+    margin: 0;
+    margin-top: 80px;
+}
+
+.hero__description {
+    font-family: "Roboto", Sans-Serif ;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0;
+    margin-top: 32px;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 400px;
+    }
+    .hero__title {
+        font-size: 36px;
+        line-height: 40px;
+        margin-top: 38px;
+    }
+    .hero__description {
+        margin-top: 16px;
+    }
+}
+
+@media (max-width: 700px) {
+    .hero {
+        height: 536px;
+    }
+    .hero__text {
+        padding: 0px 18px;
+    }
+} 

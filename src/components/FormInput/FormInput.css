@@ -1,0 +1,35 @@
+.form-input:not(:first-child) {
+  margin-top: 31px;
+}
+
+.form-input:last-of-type {
+  margin-bottom: 39px;
+}
+
+.form-input__label {
+  display: block;
+  font-family: "Inter", Sans-Serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #2f71e5;
+}
+
+.form-input__input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 100%;
+  opacity: 0.2;
+  font-family: "Inter", Sans-Serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 10px;
+  padding-left: 0px;
+}
+
+.form-input__input:focus {
+  outline: none;
+  color: black;
+  opacity: 1;
+}
