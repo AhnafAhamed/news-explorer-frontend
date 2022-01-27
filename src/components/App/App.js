@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import newsApi from "../../utils/NewsApi";
 import About from "../About/About";
@@ -30,8 +30,8 @@ function App() {
   pastDate.setDate(pastDate.getDate() - 7);
 
   function handleSearch({ keyword }) {
-    setIsLoading(true);
     setSearchData({});
+    setIsLoading(true);
     newsApi
       .searchKeyword(keyword, pastDate.toLocaleDateString(), today)
       .then((data) => {
