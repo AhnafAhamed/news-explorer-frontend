@@ -14,6 +14,7 @@ import SavedNews from "../SavedNews/SavedNews";
 import SearchForm from "../SearchForm/SearchForm";
 import SearchResults from "../SearchResults/SearchResults";
 import SavedNewsData from "../../data/SavedNews.json";
+import AuthorizationApi from "../../utils/AuthorizationApi";
 
 import "./App.css";
 
@@ -43,6 +44,24 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  function handleUserRegistration({ name, email, password }) {
+    if(!name || !email || !password) {
+      return;
+    }
+    AuthorizationApi.registerUser({ name, email, password })
+      .then((res) => {
+        if (res) {
+          setIsSignUpPopupOpen(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setIsSuccessPopupOpen(true);
+      })
   }
 
   function handleSignInClick() {
