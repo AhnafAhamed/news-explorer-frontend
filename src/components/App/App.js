@@ -47,12 +47,10 @@ function App() {
 
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
-    setIsLoggedIn(true);
   }
 
   function handleSignOutClick() {
     setIsLoggedIn(false);
-    setIsSuccessPopupOpen(true);
   }
 
   function handleCloseButtonClick() {

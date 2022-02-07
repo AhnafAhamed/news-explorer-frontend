@@ -26,7 +26,7 @@ function NewsCard({
           ""
         )}
         {route.pathname === "/" ? (
-          <button className="news-card__icon news-card__icon-bookmark news-card__icon-bookmark_saved"></button>
+          <button className="news-card__icon news-card__icon-bookmark"></button>
         ) : (
           <button className="news-card__icon news-card__icon-delete"></button>
         )}
