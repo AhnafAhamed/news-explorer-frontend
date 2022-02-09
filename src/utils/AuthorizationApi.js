@@ -22,9 +22,11 @@ class AuthorizationApi {
         name,
         email,
         password,
-      }).then((res) => this._checkResponse(res)),
-    });
+      })
+    }).then((res) => this._checkResponse(res))
   }
 }
 
-export default AuthorizationApi
+const AuthApi = new AuthorizationApi();
+
+export default AuthApi;

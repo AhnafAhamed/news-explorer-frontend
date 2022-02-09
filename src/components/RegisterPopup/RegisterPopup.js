@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Popup from "../Popup/Popup";
 
-function RegisterPopup({ isOpen, closeButtonClick, closeOnOverlayClick, onRedirectClick }) {
+function RegisterPopup({ isOpen, closeButtonClick, closeOnOverlayClick, onRedirectClick, onRegisterUser, isRegistrationError }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -18,6 +18,15 @@ function RegisterPopup({ isOpen, closeButtonClick, closeOnOverlayClick, onRedire
     setName(e.target.value);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault()
+    onRegisterUser({
+      name: name,
+      email: email,
+      password: password
+    })
+  }
+
   return (
     <Popup
       popupName="register"
@@ -26,7 +35,7 @@ function RegisterPopup({ isOpen, closeButtonClick, closeOnOverlayClick, onRedire
       closeButtonClick={closeButtonClick}
       closeOnOverlayClick={closeOnOverlayClick}
     >
-      <form className="popup__form">
+      <form className="popup__form" action="POST" onSubmit={handleSubmit}>
         <label className="popup__input-label">
           Email
         </label>
@@ -69,6 +78,7 @@ function RegisterPopup({ isOpen, closeButtonClick, closeOnOverlayClick, onRedire
           className="popup__input"
           required
         />
+        { isRegistrationError ? <p className="popup__error-text">Couldn't sign up</p> : ''}
         <button type="submit" className="popup__submit-button">
           Submit
         </button>

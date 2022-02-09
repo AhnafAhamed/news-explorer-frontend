@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
-import newsApi from "../../utils/NewsApi";
-import About from "../About/About";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import Hero from "../Hero/Hero";
-import Main from "../Main/Main";
-import Popup from "../Popup/Popup";
-import Preloader from "../Preloader/Preloader";
-import SavedNews from "../SavedNews/SavedNews";
-import SearchForm from "../SearchForm/SearchForm";
-import SearchResults from "../SearchResults/SearchResults";
-import SavedNewsData from "../../data/SavedNews.json";
-import AuthorizationApi from "../../utils/AuthorizationApi";
+import { useState } from 'react';
+import { Route, Switch, withRouter } from 'react-router-dom';
+import newsApi from '../../utils/NewsApi';
+import About from '../About/About';
+import Footer from '../Footer/Footer';
+import Header from '../Header/Header';
+import Hero from '../Hero/Hero';
+import Main from '../Main/Main';
+import Popup from '../Popup/Popup';
+import Preloader from '../Preloader/Preloader';
+import SavedNews from '../SavedNews/SavedNews';
+import SearchForm from '../SearchForm/SearchForm';
+import SearchResults from '../SearchResults/SearchResults';
+import SavedNewsData from '../../data/SavedNews.json';
+import AuthApi from '../../utils/AuthorizationApi';
 
-import "./App.css";
-import RegisterPopup from "../RegisterPopup/RegisterPopup";
-import LoginPopup from "../LoginPopup/LoginPopup";
+import './App.css';
+import RegisterPopup from '../RegisterPopup/RegisterPopup';
+import LoginPopup from '../LoginPopup/LoginPopup';
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -25,6 +25,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchData, setSearchData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isRegistrationError, setIsRegistrationError] = useState(false);
 
   const today = new Date().toLocaleDateString();
   const pastDate = new Date();
@@ -50,7 +51,7 @@ function App() {
     if (!name || !email || !password) {
       return;
     }
-    AuthorizationApi.registerUser({ name, email, password })
+    AuthApi.registerUser({ name, email, password })
       .then((res) => {
         if (res) {
           setIsSignUpPopupOpen(false);
@@ -58,6 +59,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
+        setIsRegistrationError(true);
       })
       .finally(() => {
         setIsSuccessPopupOpen(true);
@@ -89,7 +91,7 @@ function App() {
   }
 
   function handleCloseOnOverlayClick(e) {
-    if (e.target.classList.contains("popup_open")) {
+    if (e.target.classList.contains('popup_open')) {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);
       setIsSuccessPopupOpen(false);
@@ -97,14 +99,14 @@ function App() {
   }
 
   function handleCloseOnEscClick(e) {
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);
       setIsSuccessPopupOpen(false);
     }
   }
 
-  document.addEventListener("keydown", handleCloseOnEscClick);
+  document.addEventListener('keydown', handleCloseOnEscClick);
 
   return (
     <div className="App">
@@ -119,15 +121,12 @@ function App() {
               <SearchForm onSearch={handleSearch} />
             </Hero>
 
-            {searchData.status === "ok" ? (
-              <SearchResults
-                newsCards={searchData.articles}
-                isLoggedIn={isLoggedIn}
-              />
+            {searchData.status === 'ok' ? (
+              <SearchResults newsCards={searchData.articles} isLoggedIn={isLoggedIn} />
             ) : (
-              ""
+              ''
             )}
-            {isLoading ? <Preloader /> : ""}
+            {isLoading ? <Preloader /> : ''}
 
             <About />
             <Footer />
@@ -138,10 +137,7 @@ function App() {
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
             />
-            <SavedNews
-              savedNewsCards={SavedNewsData.articles}
-              isLoggedIn={isLoggedIn}
-            />
+            <SavedNews savedNewsCards={SavedNewsData.articles} isLoggedIn={isLoggedIn} />
             <Footer />
           </Route>
         </Switch>
@@ -158,10 +154,12 @@ function App() {
         </p>
       </Popup>
       <RegisterPopup
+        isRegistrationError={isRegistrationError}
         closeOnOverlayClick={handleCloseOnOverlayClick}
         closeButtonClick={handleCloseButtonClick}
         isOpen={isSignUpPopupOpen}
         onRedirectClick={handleSignInRedirect}
+        onRegisterUser={handleUserRegistration}
       ></RegisterPopup>
       <LoginPopup
         closeOnOverlayClick={handleCloseOnOverlayClick}
