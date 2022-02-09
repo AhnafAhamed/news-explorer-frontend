@@ -3,12 +3,10 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import newsApi from "../../utils/NewsApi";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
-import FormInput from "../FormInput/FormInput";
 import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Main from "../Main/Main";
 import Popup from "../Popup/Popup";
-import PopupWithForm from "../PopupWithForm/PopupWithForm";
 import Preloader from "../Preloader/Preloader";
 import SavedNews from "../SavedNews/SavedNews";
 import SearchForm from "../SearchForm/SearchForm";
@@ -17,6 +15,7 @@ import SavedNewsData from "../../data/SavedNews.json";
 import AuthorizationApi from "../../utils/AuthorizationApi";
 
 import "./App.css";
+import RegisterPopup from "../RegisterPopup/RegisterPopup";
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -106,11 +105,6 @@ function App() {
 
   document.addEventListener("keydown", handleCloseOnEscClick);
 
-  const initialValues = {
-    email: "",
-    password: "",
-    username: "",
-  };
   return (
     <div className="App">
       <Main>
@@ -157,61 +151,10 @@ function App() {
       >
         <p className="popup_type_success-text" onClick={handleSignInClick}>Sign in</p>
       </Popup>
-      <PopupWithForm
-        closeOnOverlayClick={handleCloseOnOverlayClick}
+      <RegisterPopup closeOnOverlayClick={handleCloseOnOverlayClick}
         closeButtonClick={handleCloseButtonClick}
-        onRedirectClick={handleSignUpRedirect}
-        isOpen={isSignInPopupOpen}
-        popupName="signin"
-        title="Sign in"
-        buttonText="Sign in"
-        initialValues={initialValues}
-        redirectText="Sign up"
-      >
-        <FormInput
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Enter email"
-        />
-        <FormInput
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Enter password"
-        />
-      </PopupWithForm>
-
-      <PopupWithForm
-        closeOnOverlayClick={handleCloseOnOverlayClick}
-        closeButtonClick={handleCloseButtonClick}
-        onRedirectClick={handleSignInRedirect}
-        isOpen={isSignUpPopupOpen}
-        popupName="signup"
-        title="Sign up"
-        buttonText="Sign up"
-        initialValues={initialValues}
-        redirectText="Sign in"
-      >
-        <FormInput
-          label="Email"
-          name="email"
-          type="email"
-          placeholder="Enter email"
-        />
-        <FormInput
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Enter password"
-        />
-        <FormInput
-          label="Username"
-          name="username"
-          type="text"
-          placeholder="Enter username"
-        />
-      </PopupWithForm>
+        isOpen={isSignUpPopupOpen}>
+      </RegisterPopup>
     </div>
   );
 }
