@@ -16,6 +16,7 @@ import AuthorizationApi from "../../utils/AuthorizationApi";
 
 import "./App.css";
 import RegisterPopup from "../RegisterPopup/RegisterPopup";
+import LoginPopup from "../LoginPopup/LoginPopup";
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -46,7 +47,7 @@ function App() {
   }
 
   function handleUserRegistration({ name, email, password }) {
-    if(!name || !email || !password) {
+    if (!name || !email || !password) {
       return;
     }
     AuthorizationApi.registerUser({ name, email, password })
@@ -60,7 +61,7 @@ function App() {
       })
       .finally(() => {
         setIsSuccessPopupOpen(true);
-      })
+      });
   }
 
   function handleSignInClick() {
@@ -137,7 +138,10 @@ function App() {
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
             />
-            <SavedNews savedNewsCards={SavedNewsData.articles} isLoggedIn={isLoggedIn} />
+            <SavedNews
+              savedNewsCards={SavedNewsData.articles}
+              isLoggedIn={isLoggedIn}
+            />
             <Footer />
           </Route>
         </Switch>
@@ -149,12 +153,22 @@ function App() {
         isOpen={isSuccessPopupOpen}
         title="Registration successfully completed!"
       >
-        <p className="popup_type_success-text" onClick={handleSignInClick}>Sign in</p>
+        <p className="popup_type_success-text" onClick={handleSignInClick}>
+          Sign in
+        </p>
       </Popup>
-      <RegisterPopup closeOnOverlayClick={handleCloseOnOverlayClick}
+      <RegisterPopup
+        closeOnOverlayClick={handleCloseOnOverlayClick}
         closeButtonClick={handleCloseButtonClick}
-        isOpen={isSignUpPopupOpen}>
-      </RegisterPopup>
+        isOpen={isSignUpPopupOpen}
+        onRedirectClick={handleSignInRedirect}
+      ></RegisterPopup>
+      <LoginPopup
+        closeOnOverlayClick={handleCloseOnOverlayClick}
+        closeButtonClick={handleCloseButtonClick}
+        isOpen={isSignInPopupOpen}
+        onRedirectClick={handleSignUpRedirect}
+      ></LoginPopup>
     </div>
   );
 }
