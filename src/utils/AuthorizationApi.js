@@ -25,6 +25,24 @@ class AuthorizationApi {
       })
     }).then((res) => this._checkResponse(res))
   }
+
+  authorizeUser({ email, password }) {
+    return fetch(this.baseUrl + "/signin", {
+      headers: this.headers,
+      method: "POST",
+      body: JSON.stringify({
+        email,
+        password
+      })
+    })
+    .then((res) => this._checkResponse(res))
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        return data;
+      }
+    })
+  }
 }
 
 const AuthApi = new AuthorizationApi();

@@ -6,6 +6,7 @@ function LoginPopup({
   closeButtonClick,
   closeOnOverlayClick,
   onRedirectClick,
+  onUserLogin
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,6 +19,14 @@ function LoginPopup({
     setPassword(e.target.value);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault()
+    onUserLogin({
+      email: email,
+      password: password
+    })
+  }
+
   return (
     <Popup
       popupName="register"
@@ -26,7 +35,7 @@ function LoginPopup({
       closeButtonClick={closeButtonClick}
       closeOnOverlayClick={closeOnOverlayClick}
     >
-      <form className="popup__form">
+      <form className="popup__form" action="POST" onSubmit={handleSubmit}>
         <label className="popup__input-label">Email</label>
         <input
           type="email"

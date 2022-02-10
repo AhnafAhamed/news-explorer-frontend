@@ -66,12 +66,29 @@ function App() {
       });
   }
 
+  function handleUserLogin({ email, password }) {
+    if (!email || !password ) {
+      return;
+    }
+    AuthApi.authorizeUser({ email, password }) 
+    .then((data) => {
+      if (data.token) {
+        setIsLoggedIn(true);
+        setIsSignInPopupOpen(false);
+      }
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
   }
 
   function handleSignOutClick() {
     setIsLoggedIn(false);
+    localStorage.removeItem("token");
   }
 
   function handleCloseButtonClick() {
@@ -166,6 +183,7 @@ function App() {
         closeButtonClick={handleCloseButtonClick}
         isOpen={isSignInPopupOpen}
         onRedirectClick={handleSignUpRedirect}
+        onUserLogin={handleUserLogin}
       ></LoginPopup>
     </div>
   );
