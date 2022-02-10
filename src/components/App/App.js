@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom';
-import newsApi from '../../utils/NewsApi';
-import About from '../About/About';
-import Footer from '../Footer/Footer';
-import Header from '../Header/Header';
-import Hero from '../Hero/Hero';
-import Main from '../Main/Main';
-import Popup from '../Popup/Popup';
-import Preloader from '../Preloader/Preloader';
-import SavedNews from '../SavedNews/SavedNews';
-import SearchForm from '../SearchForm/SearchForm';
-import SearchResults from '../SearchResults/SearchResults';
-import SavedNewsData from '../../data/SavedNews.json';
-import AuthApi from '../../utils/AuthorizationApi';
+import { useEffect, useState } from "react";
+import { Route, Switch, withRouter } from "react-router-dom";
+import newsApi from "../../utils/NewsApi";
+import About from "../About/About";
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import Hero from "../Hero/Hero";
+import Main from "../Main/Main";
+import Popup from "../Popup/Popup";
+import Preloader from "../Preloader/Preloader";
+import SavedNews from "../SavedNews/SavedNews";
+import SearchForm from "../SearchForm/SearchForm";
+import SearchResults from "../SearchResults/SearchResults";
+import SavedNewsData from "../../data/SavedNews.json";
+import AuthApi from "../../utils/AuthorizationApi";
 
-import './App.css';
-import RegisterPopup from '../RegisterPopup/RegisterPopup';
-import LoginPopup from '../LoginPopup/LoginPopup';
+import "./App.css";
+import RegisterPopup from "../RegisterPopup/RegisterPopup";
+import LoginPopup from "../LoginPopup/LoginPopup";
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -26,6 +26,7 @@ function App() {
   const [searchData, setSearchData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistrationError, setIsRegistrationError] = useState(false);
+  const [userName, setUserName] = useState("");
 
   const today = new Date().toLocaleDateString();
   const pastDate = new Date();
@@ -67,20 +68,33 @@ function App() {
   }
 
   function handleUserLogin({ email, password }) {
-    if (!email || !password ) {
+    if (!email || !password) {
       return;
     }
-    AuthApi.authorizeUser({ email, password }) 
-    .then((data) => {
-      if (data.token) {
-        setIsLoggedIn(true);
-        setIsSignInPopupOpen(false);
-      }
-    })
-    .catch((err) => {
-      console.log(err)
-    })
+    AuthApi.authorizeUser({ email, password })
+      .then((data) => {
+        if (data.token) {
+          setIsLoggedIn(true);
+          setIsSignInPopupOpen(false);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      AuthApi.checkUserToken()
+        .then((res) => {
+          console.log(res);
+          setUserName(res.name)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [isLoggedIn]);
 
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
@@ -108,7 +122,7 @@ function App() {
   }
 
   function handleCloseOnOverlayClick(e) {
-    if (e.target.classList.contains('popup_open')) {
+    if (e.target.classList.contains("popup_open")) {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);
       setIsSuccessPopupOpen(false);
@@ -116,14 +130,14 @@ function App() {
   }
 
   function handleCloseOnEscClick(e) {
-    if (e.key === 'Escape') {
+    if (e.key === "Escape") {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);
       setIsSuccessPopupOpen(false);
     }
   }
 
-  document.addEventListener('keydown', handleCloseOnEscClick);
+  document.addEventListener("keydown", handleCloseOnEscClick);
 
   return (
     <div className="App">
@@ -134,16 +148,20 @@ function App() {
               onSignOutClick={handleSignOutClick}
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
+              userName={userName}
             >
               <SearchForm onSearch={handleSearch} />
             </Hero>
 
-            {searchData.status === 'ok' ? (
-              <SearchResults newsCards={searchData.articles} isLoggedIn={isLoggedIn} />
+            {searchData.status === "ok" ? (
+              <SearchResults
+                newsCards={searchData.articles}
+                isLoggedIn={isLoggedIn}
+              />
             ) : (
-              ''
+              ""
             )}
-            {isLoading ? <Preloader /> : ''}
+            {isLoading ? <Preloader /> : ""}
 
             <About />
             <Footer />
@@ -153,8 +171,12 @@ function App() {
               onSignOutClick={handleSignOutClick}
               isLoggedIn={isLoggedIn}
               onSignInClick={handleSignInClick}
+              userName={userName}
             />
-            <SavedNews savedNewsCards={SavedNewsData.articles} isLoggedIn={isLoggedIn} />
+            <SavedNews
+              savedNewsCards={SavedNewsData.articles}
+              isLoggedIn={isLoggedIn}
+            />
             <Footer />
           </Route>
         </Switch>

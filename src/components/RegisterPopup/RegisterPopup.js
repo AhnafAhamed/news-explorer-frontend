@@ -25,6 +25,7 @@ function RegisterPopup({ isOpen, closeButtonClick, closeOnOverlayClick, onRedire
       email: email,
       password: password
     })
+    
   }
 
   return (

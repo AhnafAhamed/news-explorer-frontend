@@ -1,10 +1,10 @@
 import "./Hero.css";
 import Header from "../Header/Header";
 
-function Hero({ onSignInClick, isLoggedIn, onSignOutClick, children }) {
+function Hero({ onSignInClick, isLoggedIn, onSignOutClick, children, userName }) {
   return (
     <div className="hero">
-      <Header isLoggedIn={isLoggedIn} onSignOutClick={onSignOutClick} onSignInClick={onSignInClick} />
+      <Header isLoggedIn={isLoggedIn} onSignOutClick={onSignOutClick} onSignInClick={onSignInClick} userName={userName} />
       <div className="hero__text">
         <h1 className="hero__title">What's going on in the world?</h1>
         <p className="hero__description">

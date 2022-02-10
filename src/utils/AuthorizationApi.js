@@ -43,6 +43,20 @@ class AuthorizationApi {
       }
     })
   }
+
+  checkUserToken() {
+    const userToken = localStorage.getItem("token");
+    return fetch(this.baseUrl + "/users/me", {
+      method: "GET",
+      headers: {
+        'Accept': 'application/json',
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${userToken}`,
+      }
+    })
+    .then(data => data)
+    .then((res) => this._checkResponse(res))
+  }
 }
 
 const AuthApi = new AuthorizationApi();
