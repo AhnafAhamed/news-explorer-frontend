@@ -17,6 +17,8 @@ import AuthApi from "../../utils/AuthorizationApi";
 import "./App.css";
 import RegisterPopup from "../RegisterPopup/RegisterPopup";
 import LoginPopup from "../LoginPopup/LoginPopup";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+import SavedNewsPage from "../SavedNewsPage/SavedNewsPage";
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -170,19 +172,15 @@ function App() {
             <About />
             <Footer />
           </Route>
-          <Route path="/saved-news">
-            <Header
-              onSignOutClick={handleSignOutClick}
-              isLoggedIn={isLoggedIn}
-              onSignInClick={handleSignInClick}
-              userName={userName}
-            />
-            <SavedNews
-              savedNewsCards={SavedNewsData.articles}
-              isLoggedIn={isLoggedIn}
-            />
-            <Footer />
-          </Route>
+          <ProtectedRoute
+            path="/saved-news"
+            onSignOutClick={handleSignOutClick}
+            isLoggedIn={isLoggedIn}
+            onSignInClick={handleSignInClick}
+            savedNewsCards={SavedNewsData.articles}
+            userName={userName}
+            component={SavedNewsPage}
+          />
         </Switch>
       </Main>
       <Popup
