@@ -55,16 +55,17 @@ function App() {
     AuthApi.registerUser({ name, email, password })
       .then((res) => {
         if (res) {
+          setIsSuccessPopupOpen(true);
           setIsSignUpPopupOpen(false);
         }
       })
       .catch((err) => {
         console.log(err);
         setIsRegistrationError(true);
+        setTimeout(() => {
+          setIsRegistrationError(false);
+        }, 3000);
       })
-      .finally(() => {
-        setIsSuccessPopupOpen(true);
-      });
   }
 
   function handleUserLogin({ email, password }) {

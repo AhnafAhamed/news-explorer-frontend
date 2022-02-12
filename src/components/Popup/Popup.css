@@ -109,13 +109,18 @@
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  color: #b6bcbf;
-  background-color: #e6e8eb;
+  color: #fff;
+  background-color: #2F71E5;
   padding: 20px;
   border-radius: 100px;
   margin-top: 39px;
 }
 
+
+.popup__submit-button:disabled {
+  background-color: #e6e8eb;
+  color: #b6bcbf;
+}
 .popup__submit-button_active {
   background-color: #2f71e5;
   color: #fff;
