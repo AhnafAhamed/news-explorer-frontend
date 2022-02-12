@@ -26,6 +26,7 @@ function App() {
   const [searchData, setSearchData] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistrationError, setIsRegistrationError] = useState(false);
+  const [isLoginError, setIsLoginError] = useState(false);
   const [userName, setUserName] = useState("");
 
   const today = new Date().toLocaleDateString();
@@ -59,13 +60,12 @@ function App() {
           setIsSignUpPopupOpen(false);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         setIsRegistrationError(true);
         setTimeout(() => {
           setIsRegistrationError(false);
         }, 3000);
-      })
+      });
   }
 
   function handleUserLogin({ email, password }) {
@@ -79,8 +79,11 @@ function App() {
           setIsSignInPopupOpen(false);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        setIsLoginError(true);
+        setTimeout(() => {
+          setIsLoginError(false);
+        }, 3000);
       });
   }
 
@@ -89,7 +92,7 @@ function App() {
       AuthApi.checkUserToken()
         .then((res) => {
           console.log(res);
-          setUserName(res.name)
+          setUserName(res.name);
         })
         .catch((err) => {
           console.log(err);
@@ -202,6 +205,7 @@ function App() {
         onRegisterUser={handleUserRegistration}
       ></RegisterPopup>
       <LoginPopup
+        isLoginError={isLoginError}
         closeOnOverlayClick={handleCloseOnOverlayClick}
         closeButtonClick={handleCloseButtonClick}
         isOpen={isSignInPopupOpen}

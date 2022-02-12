@@ -54,7 +54,7 @@
 }
 
 .popup_type_success-text {
-  font-family:"Inter", Sans-Serif ;
+  font-family: "Inter", Sans-Serif;
   font-size: 18px;
   line-height: 22px;
   color: #2f71e5;
@@ -64,7 +64,6 @@
 .popup_type_success .popup__title {
   margin-bottom: 14px;
 }
-
 
 .popup__input-label {
   display: block;
@@ -79,7 +78,7 @@
   margin-top: 31px;
 }
 
-.popup__input{
+.popup__input {
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -92,7 +91,6 @@
   color: black;
 }
 
-
 .popup__input::placeholder {
   color: rgba(0, 0, 0, 0.2);
 }
@@ -100,6 +98,16 @@
 .popup__input:focus {
   outline: none;
   background-color: transparent;
+}
+
+.popup__input-error-text {
+  font-family: Inter, sans-serif;
+  min-height: 15px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgb(255, 0, 0);
+  margin: 3px 0px 0px;
 }
 
 .popup__submit-button {
@@ -110,12 +118,11 @@
   font-size: 18px;
   line-height: 24px;
   color: #fff;
-  background-color: #2F71E5;
+  background-color: #2f71e5;
   padding: 20px;
   border-radius: 100px;
   margin-top: 39px;
 }
-
 
 .popup__submit-button:disabled {
   background-color: #e6e8eb;
