@@ -3,15 +3,12 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import newsApi from "../../utils/NewsApi";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
 import Hero from "../Hero/Hero";
 import Main from "../Main/Main";
 import Popup from "../Popup/Popup";
 import Preloader from "../Preloader/Preloader";
-import SavedNews from "../SavedNews/SavedNews";
 import SearchForm from "../SearchForm/SearchForm";
 import SearchResults from "../SearchResults/SearchResults";
-import SavedNewsData from "../../data/SavedNews.json";
 import AuthApi from "../../utils/AuthorizationApi";
 
 import "./App.css";
@@ -19,6 +16,7 @@ import RegisterPopup from "../RegisterPopup/RegisterPopup";
 import LoginPopup from "../LoginPopup/LoginPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNewsPage from "../SavedNewsPage/SavedNewsPage";
+import MainApi from "../../utils/MainApi";
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -30,6 +28,7 @@ function App() {
   const [isRegistrationError, setIsRegistrationError] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
   const [userName, setUserName] = useState("");
+  const [savedArticles, setSavedArticles] = useState([]);
 
   const today = new Date().toLocaleDateString();
   const pastDate = new Date();
@@ -50,6 +49,19 @@ function App() {
         setIsLoading(false);
       });
   }
+  useEffect(() => {
+    if (isLoggedIn) {
+      MainApi
+        .getArticles()
+        .then((data) => {
+          setSavedArticles(data);
+          console.log(data)
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [isLoggedIn]);
 
   function handleUserRegistration({ name, email, password }) {
     if (!name || !email || !password) {
@@ -177,7 +189,7 @@ function App() {
             onSignOutClick={handleSignOutClick}
             isLoggedIn={isLoggedIn}
             onSignInClick={handleSignInClick}
-            savedNewsCards={SavedNewsData.articles}
+            savedNewsCards={savedArticles}
             userName={userName}
             component={SavedNewsPage}
           />

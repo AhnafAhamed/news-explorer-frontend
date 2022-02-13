@@ -11,7 +11,22 @@ class MainApi {
         return Promise.reject("Error")
     }
 
+    getArticles() {
+        return fetch(this.baseUrl + "/articles", {
+            method: "GET",
+            headers: this.headers,
+        }).then((res) => this._checkResponse(res));
+    }
+
 
 }
 
-export default MainApi;
+const mainApi = new MainApi({
+    baseUrl: "https://api.explore.students.nomoreparties.sbs",
+    headers: {
+      "Authorization": `Bearer ${localStorage.getItem('token')}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+export default mainApi;

@@ -33,7 +33,12 @@ function NewsCard({
         {route.pathname === "/saved-news" ? (
           <p className="news-card__delete-prompt">Remove from saved</p>
         ) : (
+          ""
+        )}
+        {route.pathname === "/" && !isLoggedIn ? (
           <p className="news-card__save-prompt">Sign in to save articles</p>
+        ) : (
+          ""
         )}
       </div>
       <div className="news-card__text">
