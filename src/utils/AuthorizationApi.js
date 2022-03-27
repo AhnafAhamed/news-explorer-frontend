@@ -1,6 +1,7 @@
 class AuthorizationApi {
   constructor() {
-    this.baseUrl = "https://api.explore.students.nomoreparties.sbs";
+    // this.baseUrl = "https://api.explore.students.nomoreparties.sbs";
+    this.baseUrl = "http://localhost:3000";
     this.headers = {
       Accept: "application/json",
       "Content-Type": "application/json",

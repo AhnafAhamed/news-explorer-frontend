@@ -36,7 +36,8 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-  baseUrl: "https://api.explore.students.nomoreparties.sbs",
+  // baseUrl: "https://api.explore.students.nomoreparties.sbs",
+  baseUrl: "http://localhost:3000",
   headers: {
     Authorization: `Bearer ${localStorage.getItem("token")}`,
     "Content-Type": "application/json",
