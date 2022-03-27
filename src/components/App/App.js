@@ -16,7 +16,7 @@ import RegisterPopup from "../RegisterPopup/RegisterPopup";
 import LoginPopup from "../LoginPopup/LoginPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNewsPage from "../SavedNewsPage/SavedNewsPage";
-import MainApi from "../../utils/MainApi";
+import mainApi from "../../utils/MainApi";
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -29,6 +29,7 @@ function App() {
   const [isLoginError, setIsLoginError] = useState(false);
   const [userName, setUserName] = useState("");
   const [savedArticles, setSavedArticles] = useState([]);
+  const [keyword, setKeyword] = useState("");
 
   const today = new Date().toLocaleDateString();
   const pastDate = new Date();
@@ -36,11 +37,13 @@ function App() {
 
   function handleSearch({ keyword }) {
     setIsLoading(true);
+    setKeyword(keyword)
     setSearchData({});
     newsApi
       .searchKeyword(keyword, pastDate.toLocaleDateString(), today)
       .then((data) => {
         setSearchData(data);
+        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -51,11 +54,11 @@ function App() {
   }
   useEffect(() => {
     if (isLoggedIn) {
-      MainApi
+      mainApi
         .getArticles()
         .then((data) => {
           setSavedArticles(data);
-          console.log(data)
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -99,6 +102,20 @@ function App() {
           setIsLoginError(false);
         }, 3000);
       });
+  }
+
+  function handleBookmarkClick({
+    keyword,
+    title,
+    text,
+    date,
+    source,
+    link,
+    image,
+  }) {
+    mainApi.saveArticle({ keyword, title, text, date, source, link, image }).then((data) => {
+
+    })
   }
 
   useEffect(() => {
@@ -175,6 +192,7 @@ function App() {
               <SearchResults
                 newsCards={searchData.articles}
                 isLoggedIn={isLoggedIn}
+                bookmarkClick={handleBookmarkClick}
               />
             ) : (
               ""

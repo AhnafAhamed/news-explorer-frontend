@@ -6,7 +6,7 @@ import "./NewsCardList.css";
 const postsPerPage = 3;
 let arrayForHoldingPosts = [];
 
-function NewsCardList({ isLoggedIn, newsCards }) {
+function NewsCardList({ isLoggedIn, newsCards, bookmarkClick }) {
   const route = useLocation();
 
   const [postsToShow, setPostsToShow] = useState([]);
@@ -39,6 +39,7 @@ function NewsCardList({ isLoggedIn, newsCards }) {
             title={newsCard.title}
             description={newsCard.description}
             isLoggedIn={isLoggedIn}
+            bookmarkClick={bookmarkClick}
           />
         ))}
       </ul>

@@ -9,6 +9,7 @@ function NewsCard({
   title,
   description,
   category,
+  bookmarkClick
 }) {
   const route = useLocation();
 
@@ -26,7 +27,7 @@ function NewsCard({
           ""
         )}
         {route.pathname === "/" ? (
-          <button className="news-card__icon news-card__icon-bookmark"></button>
+          <button className="news-card__icon news-card__icon-bookmark" onClick={bookmarkClick}></button>
         ) : (
           <button className="news-card__icon news-card__icon-delete"></button>
         )}
