@@ -37,7 +37,7 @@ function App() {
 
   function handleSearch({ keyword }) {
     setIsLoading(true);
-    setKeyword(keyword)
+    setKeyword(keyword);
     setSearchData({});
     newsApi
       .searchKeyword(keyword, pastDate.toLocaleDateString(), today)
@@ -113,16 +113,17 @@ function App() {
     link,
     image,
   }) {
-    mainApi.saveArticle({ keyword, title, text, date, source, link, image }).then((data) => {
-
-    })
+    mainApi
+      .saveArticle({ keyword, title, text, date, source, link, image })
+      .then((data) => {});
   }
 
   useEffect(() => {
-    if (isLoggedIn) {
+    if (localStorage.getItem("token")) {
       AuthApi.checkUserToken()
         .then((res) => {
           console.log(res);
+          setIsLoggedIn(true);
           setUserName(res.name);
         })
         .catch((err) => {
