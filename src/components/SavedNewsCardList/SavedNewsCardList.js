@@ -7,13 +7,13 @@ function SavedNewsCardList({ savedNewsCards, isLoggedIn }) {
       {savedNewsCards.map((savedNewsCard, index) => (
         <NewsCard
           key={index}
-          image={savedNewsCard.urlToImage}
-          source={savedNewsCard.source.name}
-          date={savedNewsCard.publishedAt}
+          image={savedNewsCard.image}
+          source={savedNewsCard.source}
+          date={savedNewsCard.date}
           title={savedNewsCard.title}
-          description={savedNewsCard.description}
+          description={savedNewsCard.text}
           isLoggedIn={isLoggedIn}
-          category="Apple"
+          category={savedNewsCard.keyword}
         />
       ))}
     </div>
