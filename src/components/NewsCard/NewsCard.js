@@ -1,6 +1,8 @@
 import "./NewsCard.css";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import mainApi from "../../utils/MainApi";
+
 
 function NewsCard({
   isLoggedIn,
@@ -43,6 +45,18 @@ function NewsCard({
         });
     }
   }
+useEffect(() => {
+  
+})
+  function handleDeleteClick() {
+    const articleToDelete = savedArticles.find((item) => item.title === title);
+
+    mainApi.deleteArticle(articleToDelete._id)
+    .then((data) => {
+      console.log(data)
+      mainApi.getArticles()
+    })
+  }
 
   return (
     <li className="news-card">
@@ -59,7 +73,7 @@ function NewsCard({
             onClick={handleBookmarkClick}
           ></button>
         ) : (
-          <button className="news-card__icon news-card__icon-delete"></button>
+          <button className="news-card__icon news-card__icon-delete" onClick={handleDeleteClick}></button>
         )}
         {route.pathname === "/saved-news" ? (
           <p className="news-card__delete-prompt">Remove from saved</p>

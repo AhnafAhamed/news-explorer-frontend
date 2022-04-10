@@ -33,6 +33,14 @@ class MainApi {
       }),
     }).then((res) => this._checkResponse(res));
   }
+
+  deleteArticle(articleId) {
+    return fetch(this.baseUrl + `/articles/${articleId}`, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then((res) => this._checkResponse(res))
+
+  }
 }
 
 const mainApi = new MainApi({
