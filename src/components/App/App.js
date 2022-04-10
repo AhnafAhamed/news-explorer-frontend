@@ -58,7 +58,6 @@ function App() {
         .getArticles()
         .then((data) => {
           setSavedArticles(data);
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -103,8 +102,6 @@ function App() {
         }, 3000);
       });
   }
-
-  
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -182,6 +179,7 @@ function App() {
                 newsCards={searchData.articles}
                 isLoggedIn={isLoggedIn}
                 keyword={keyword}
+                savedArticles={savedArticles}
               />
             ) : (
               ""

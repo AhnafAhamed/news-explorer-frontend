@@ -1,7 +1,6 @@
 import "./NewsCard.css";
 import { useLocation } from "react-router-dom";
 import mainApi from "../../utils/MainApi";
-import { useState } from "react/cjs/react.production.min";
 
 function NewsCard({
   isLoggedIn,
@@ -11,7 +10,8 @@ function NewsCard({
   date,
   title,
   text,
-  keyword
+  keyword,
+  savedArticles,
 }) {
   const route = useLocation();
 
@@ -20,13 +20,28 @@ function NewsCard({
   }
 
   function handleBookmarkClick() {
-    mainApi
-      .saveArticle({ keyword:keyword, title:title, text:text, date:date, source:source, link:link, image:image })
-      .then((data) => {
-        console.log(data)
-      }).catch((error) => {
-        console.log(error)
-      })
+    const checkIfArticleExists = savedArticles.some(
+      (article) => article.title === title
+    );
+    console.log(checkIfArticleExists);
+    if (!checkIfArticleExists) {
+      mainApi
+        .saveArticle({
+          keyword: keyword,
+          title: title,
+          text: text,
+          date: date,
+          source: source,
+          link: link,
+          image: image,
+        })
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   }
 
   return (
@@ -39,7 +54,10 @@ function NewsCard({
           ""
         )}
         {route.pathname === "/" ? (
-          <button className="news-card__icon news-card__icon-bookmark" onClick={handleBookmarkClick}></button>
+          <button
+            className="news-card__icon news-card__icon-bookmark"
+            onClick={handleBookmarkClick}
+          ></button>
         ) : (
           <button className="news-card__icon news-card__icon-delete"></button>
         )}
