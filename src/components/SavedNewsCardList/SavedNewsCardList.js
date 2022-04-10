@@ -11,9 +11,9 @@ function SavedNewsCardList({ savedNewsCards, isLoggedIn }) {
           source={savedNewsCard.source}
           date={savedNewsCard.date}
           title={savedNewsCard.title}
-          description={savedNewsCard.text}
+          text={savedNewsCard.text}
           isLoggedIn={isLoggedIn}
-          category={savedNewsCard.keyword}
+          keyword={savedNewsCard.keyword}
         />
       ))}
     </div>

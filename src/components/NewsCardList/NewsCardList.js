@@ -5,7 +5,7 @@ import "./NewsCardList.css";
 
 
 
-function NewsCardList({ isLoggedIn, newsCards, bookmarkClick }) {
+function NewsCardList({ isLoggedIn, newsCards, keyword }) {
   const route = useLocation();
   const [postsCount, setPostsCount] = useState(3);
   let postsToShow = newsCards.slice(0,postsCount);
@@ -24,9 +24,10 @@ function NewsCardList({ isLoggedIn, newsCards, bookmarkClick }) {
             source={newsCard.source.name}
             date={newsCard.publishedAt}
             title={newsCard.title}
-            description={newsCard.description}
+            text={newsCard.description}
+            link={newsCard.url}
             isLoggedIn={isLoggedIn}
-            bookmarkClick={bookmarkClick}
+            keyword={keyword}
           />
         ))}
       </ul>

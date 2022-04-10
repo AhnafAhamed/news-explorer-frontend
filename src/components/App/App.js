@@ -104,19 +104,7 @@ function App() {
       });
   }
 
-  function handleBookmarkClick({
-    keyword,
-    title,
-    text,
-    date,
-    source,
-    link,
-    image,
-  }) {
-    mainApi
-      .saveArticle({ keyword, title, text, date, source, link, image })
-      .then((data) => {});
-  }
+  
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
@@ -193,7 +181,7 @@ function App() {
               <SearchResults
                 newsCards={searchData.articles}
                 isLoggedIn={isLoggedIn}
-                bookmarkClick={handleBookmarkClick}
+                keyword={keyword}
               />
             ) : (
               ""
