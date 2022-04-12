@@ -20,7 +20,6 @@ function NewsCard({
 
   useEffect(() => {
     isArticleSaved()
-    console.log(newSavedArticles)
   })
 
   function getNewArticles() {
@@ -59,9 +58,6 @@ function NewsCard({
           })
           .then((data) => {
             console.log(data);
-            getNewArticles();
-            isArticleSaved();
-            console.log(newSavedArticles)
           })
           .catch((error) => {
             console.log(error);
@@ -78,12 +74,8 @@ function NewsCard({
     const articleToDelete = savedArticles.find((item) => item.title === title);
     console.log({articleToDelete})
     mainApi.deleteArticle(articleToDelete._id).then((data) => {
-      console.log(data);
-      setIsSaved(false)
-      getNewArticles();
-    }).finally(()=> {
-      isArticleSaved();
-    });
+      console.log(data)
+    })
   }
 
   return (
