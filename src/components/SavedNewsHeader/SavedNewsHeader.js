@@ -29,7 +29,6 @@ function SavedNewsHeader({ newsCards }) {
             By Keywords:{" "}
           </span>
           <span className="saved-news-header__description_keywords">
-            {/* Nature, Wild and 2 other */}
             {categories()}
           </span>
         </div>

@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import mainApi from "../../utils/MainApi";
 
-
 function NewsCard({
   isLoggedIn,
   image,
@@ -16,46 +15,75 @@ function NewsCard({
   savedArticles,
 }) {
   const route = useLocation();
+  const [isSaved, setIsSaved] = useState(false);
+  const [newSavedArticles, setNewSavedArticles] = useState([]);
 
+  useEffect(() => {
+    isArticleSaved()
+    console.log(newSavedArticles)
+  })
+
+  function getNewArticles() {
+    mainApi.getArticles().then((data) => {
+      setNewSavedArticles(data)
+    })
+  }
+  
   function parseDate(input) {
     return new Date(input);
   }
 
-  function handleBookmarkClick() {
-    const checkIfArticleExists = savedArticles.some(
-      (article) => article.title === title
-    );
-    console.log(checkIfArticleExists);
-    if (!checkIfArticleExists) {
-      mainApi
-        .saveArticle({
-          keyword: keyword,
-          title: title,
-          text: text,
-          date: date,
-          source: source,
-          link: link,
-          image: image,
-        })
-        .then((data) => {
-          console.log(data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  function isArticleSaved() {
+    const savedArticle = newSavedArticles.some((item) => item.title === title);
+    if (savedArticle) {
+      setIsSaved(true);
     }
   }
-useEffect(() => {
-  
-})
-  function handleDeleteClick() {
-    const articleToDelete = savedArticles.find((item) => item.title === title);
 
-    mainApi.deleteArticle(articleToDelete._id)
-    .then((data) => {
-      console.log(data)
-      mainApi.getArticles()
-    })
+  function handleBookmarkClick() {
+    if(isLoggedIn){
+      const checkIfArticleExists = newSavedArticles.some(
+        (article) => article.title === title
+      );
+      console.log(checkIfArticleExists);
+      if (!checkIfArticleExists) {
+        mainApi
+          .saveArticle({
+            keyword: keyword,
+            title: title,
+            text: text,
+            date: date,
+            source: source,
+            link: link,
+            image: image,
+          })
+          .then((data) => {
+            console.log(data);
+            getNewArticles();
+            isArticleSaved();
+            console.log(newSavedArticles)
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      } else {
+        handleDeleteClick();
+      }
+    }
+  }
+ 
+
+  function handleDeleteClick() {
+    getNewArticles()
+    const articleToDelete = savedArticles.find((item) => item.title === title);
+    console.log({articleToDelete})
+    mainApi.deleteArticle(articleToDelete._id).then((data) => {
+      console.log(data);
+      setIsSaved(false)
+      getNewArticles();
+    }).finally(()=> {
+      isArticleSaved();
+    });
   }
 
   return (
@@ -69,11 +97,16 @@ useEffect(() => {
         )}
         {route.pathname === "/" ? (
           <button
-            className="news-card__icon news-card__icon-bookmark"
+            className={`news-card__icon news-card__icon-bookmark ${
+              isSaved ? "news-card__icon-bookmark_saved" : ""
+            }`}
             onClick={handleBookmarkClick}
           ></button>
         ) : (
-          <button className="news-card__icon news-card__icon-delete" onClick={handleDeleteClick}></button>
+          <button
+            className="news-card__icon news-card__icon-delete"
+            onClick={handleDeleteClick}
+          ></button>
         )}
         {route.pathname === "/saved-news" ? (
           <p className="news-card__delete-prompt">Remove from saved</p>
