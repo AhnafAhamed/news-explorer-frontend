@@ -1,6 +1,6 @@
 import "./SavedNewsHeader.css";
 
-function SavedNewsHeader({ newsCards }) {
+function SavedNewsHeader({ newsCards, userName }) {
   function categories () {
     let categoryText = "";
     const categoriesList = newsCards.map((item) => {
@@ -19,7 +19,7 @@ function SavedNewsHeader({ newsCards }) {
       <h3 className="saved-news-header__info">
         {newsCards.length === 0
           ? "You dont have any articles saved"
-          : `Elise, you have ${newsCards.length} saved articles`}
+          : `${userName}, you have ${newsCards.length} saved articles`}
       </h3>
       {newsCards.length === 0 ? (
         ""

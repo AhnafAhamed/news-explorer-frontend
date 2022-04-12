@@ -2,10 +2,10 @@ import "./SavedNews.css";
 import SavedNewsHeader from "../SavedNewsHeader/SavedNewsHeader";
 import SavedNewsCardList from "../SavedNewsCardList/SavedNewsCardList";
 
-function SavedNews({ savedNewsCards, isLoggedIn }) {
+function SavedNews({ savedNewsCards, isLoggedIn, userName }) {
   return (
     <div className="saved-news">
-      <SavedNewsHeader newsCards={savedNewsCards} />
+      <SavedNewsHeader userName={userName} newsCards={savedNewsCards} />
 
       {savedNewsCards.length === 0 ? (
         ""

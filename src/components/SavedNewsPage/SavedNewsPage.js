@@ -11,7 +11,7 @@ function SavedNewsPage({ savedNewsCards, onSignOutClick, isLoggedIn, onSignInCli
         onSignInClick={onSignInClick}
         userName={userName}
       />
-      <SavedNews savedNewsCards={savedNewsCards} isLoggedIn={isLoggedIn} />
+      <SavedNews userName={userName} savedNewsCards={savedNewsCards} isLoggedIn={isLoggedIn} />
       <Footer />
     </div>
   );
