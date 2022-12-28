@@ -1,20 +1,51 @@
+import { useEffect, useState } from "react";
+import mainApi from "../../utils/MainApi";
 import NewsCard from "../NewsCard/NewsCard";
 import "./SavedNewsCardList.css";
 
-function SavedNewsCardList({ savedNewsCards, isLoggedIn }) {
+function SavedNewsCardList({ isLoggedIn }) {
+  const [newsCards, setNewsCards] = useState([]);
+
+  useEffect(() => {
+    getArticles();
+  }, []);
+
+  function getArticles() {
+    mainApi
+      .getArticles()
+      .then((data) => {
+        setNewsCards(data);
+        console.log({ data });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  
+  function handleDeleteClick(id) {
+    mainApi.deleteArticle(id).then((data) => {
+      console.log(data);
+    }).catch((err) => {
+      console.log(err);
+    }).finally(() => {
+      getArticles();
+    })
+  }
   return (
     <div className="saved-news-card-list">
-      {savedNewsCards.map((savedNewsCard, index) => (
+      {newsCards.map((newsCard, index) => (
         <NewsCard
           key={index}
-          savedArticles={savedNewsCards}
-          image={savedNewsCard.image}
-          source={savedNewsCard.source}
-          date={savedNewsCard.date}
-          title={savedNewsCard.title}
-          text={savedNewsCard.text}
+          savedArticles={newsCard}
+          image={newsCard.image}
+          source={newsCard.source}
+          date={newsCard.date}
+          title={newsCard.title}
+          text={newsCard.text}
           isLoggedIn={isLoggedIn}
-          keyword={savedNewsCard.keyword}
+          keyword={newsCard.keyword}
+          articleId={newsCard._id}
+          handleDeleteClick={handleDeleteClick}
         />
       ))}
     </div>

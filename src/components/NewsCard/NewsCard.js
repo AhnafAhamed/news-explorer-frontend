@@ -1,10 +1,9 @@
 import "./NewsCard.css";
-import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import mainApi from "../../utils/MainApi";
 
 function NewsCard({
   isLoggedIn,
+  articleId,
   image,
   source,
   link,
@@ -13,71 +12,16 @@ function NewsCard({
   text,
   keyword,
   savedArticles,
+  isSaved,
+  handleBookmarkClick,
+  handleDeleteClick,
 }) {
   const route = useLocation();
-  const [isSaved, setIsSaved] = useState(false);
-  const [newSavedArticles, setNewSavedArticles] = useState([]);
 
-  useEffect(() => {
-    isArticleSaved()
-  })
-
-  function getNewArticles() {
-    mainApi.getArticles().then((data) => {
-      setNewSavedArticles(data)
-    })
-  }
-  
   function parseDate(input) {
     return new Date(input);
   }
-
-  function isArticleSaved() {
-    const savedArticle = newSavedArticles.some((item) => item.title === title);
-    if (savedArticle) {
-      setIsSaved(true);
-    }
-  }
-
-  function handleBookmarkClick() {
-    if(isLoggedIn){
-      const checkIfArticleExists = newSavedArticles.some(
-        (article) => article.title === title
-      );
-      console.log(checkIfArticleExists);
-      if (!checkIfArticleExists) {
-        mainApi
-          .saveArticle({
-            keyword: keyword,
-            title: title,
-            text: text,
-            date: date,
-            source: source,
-            link: link,
-            image: image,
-          })
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        handleDeleteClick();
-      }
-    }
-  }
- 
-
-  function handleDeleteClick() {
-    getNewArticles()
-    const articleToDelete = savedArticles.find((item) => item.title === title);
-    console.log({articleToDelete})
-    mainApi.deleteArticle(articleToDelete._id).then((data) => {
-      console.log(data)
-    })
-  }
-
+  
   return (
     <li className="news-card">
       <div className="news-card__image-container">
@@ -92,12 +36,12 @@ function NewsCard({
             className={`news-card__icon news-card__icon-bookmark ${
               isSaved ? "news-card__icon-bookmark_saved" : ""
             }`}
-            onClick={handleBookmarkClick}
+            onClick={() => handleBookmarkClick(title, text, date, source, link, image)}
           ></button>
         ) : (
           <button
             className="news-card__icon news-card__icon-delete"
-            onClick={handleDeleteClick}
+            onClick={() => handleDeleteClick(articleId)}
           ></button>
         )}
         {route.pathname === "/saved-news" ? (
