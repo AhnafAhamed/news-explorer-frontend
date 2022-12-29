@@ -122,6 +122,7 @@
   padding: 20px;
   border-radius: 100px;
   margin-top: 39px;
+  cursor: pointer;
 }
 
 .popup__submit-button:disabled {
