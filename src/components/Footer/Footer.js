@@ -7,21 +7,13 @@ function Footer() {
   return (
     <footer className="footer">
       <p className="footer__copyrights">
-        © 2021 Supersite, Powered by News API
+        © 2021 News Explorer, Powered by News API
       </p>
       <nav className="footer__navigation">
         <div className="footer__links">
           <NavLink to="/" className="footer__link">
             Home
           </NavLink>
-          <a
-            className="footer__link"
-            target="_blank"
-            rel="noreferrer"
-            href="https://practicum.yandex.com/"
-          >
-            Practicum by Yandex
-          </a>
         </div>
         <div className="footer__social-links">
           <a
@@ -31,14 +23,6 @@ function Footer() {
             href="https://github.com/AhnafAhamed/news-explorer-frontend"
           >
             <img src={githubIcon} alt="github" />
-          </a>
-          <a
-            className="footer__social-link"
-            target="_blank"
-            rel="noreferrer"
-            href="https://www.facebook.com/YPracticum"
-          >
-            <img src={fbIcon} alt="facebook" />
           </a>
         </div>
       </nav>
