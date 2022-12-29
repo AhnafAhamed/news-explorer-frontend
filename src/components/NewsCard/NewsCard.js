@@ -55,7 +55,7 @@ function NewsCard({
           ""
         )}
       </div>
-      <div className="news-card__text">
+      <div className="news-card__info">
         <p className="news-card__date">
           {parseDate(date).toLocaleDateString("default", {
             year: "numeric",
