@@ -52,18 +52,6 @@ function App() {
         setIsLoading(false);
       });
   }
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     mainApi
-  //       .getArticles()
-  //       .then((data) => {
-  //         setSavedArticles(data);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, [isLoggedIn]);
 
   function handleUserRegistration({ name, email, password }) {
     if (!name || !email || !password) {
@@ -102,30 +90,6 @@ function App() {
         }, 3000);
       });
   }
-
-  useEffect(() => {
-    if (localStorage.getItem("token")) {
-      AuthApi.checkUserToken()
-        .then((res) => {
-          console.log(res)
-          setIsLoggedIn(true);
-          setUserName(res.name);
-        })
-        .then(() => {
-          mainApi
-            .getArticles()
-            .then((data) => {
-              setSavedArticles(data);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [isLoggedIn]);
 
   function handleSignInClick() {
     setIsSignInPopupOpen(true);
@@ -169,6 +133,30 @@ function App() {
   }
 
   document.addEventListener("keydown", handleCloseOnEscClick);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      AuthApi.checkUserToken()
+        .then((res) => {
+          console.log(res)
+          setIsLoggedIn(true);
+          setUserName(res.name);
+        })
+        .then(() => {
+          mainApi
+            .getArticles()
+            .then((data) => {
+              setSavedArticles(data);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, [isLoggedIn]);
 
   return (
     <div className="App">
