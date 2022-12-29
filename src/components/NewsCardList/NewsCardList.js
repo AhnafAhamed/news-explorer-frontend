@@ -39,7 +39,7 @@ function NewsCardList({ isLoggedIn, newsCards, keyword, savedArticles }) {
     image
   ) {
     if (isLoggedIn) {
-      const checkIfArticleExists = newSavedArticles.some(
+      const checkIfArticleExists = newSavedArticles?.some(
         (article) => article.title === title
       );
       if (!checkIfArticleExists) {
