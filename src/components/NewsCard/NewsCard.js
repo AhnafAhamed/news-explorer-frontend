@@ -11,7 +11,6 @@ function NewsCard({
   title,
   text,
   keyword,
-  savedArticles,
   isSaved,
   handleBookmarkClick,
   handleDeleteClick,

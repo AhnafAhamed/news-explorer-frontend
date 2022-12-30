@@ -4,7 +4,7 @@ import mainApi from "../../utils/MainApi";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ isLoggedIn, newsCards, keyword, savedArticles }) {
+function NewsCardList({ isLoggedIn, newsCards, keyword }) {
   const route = useLocation();
   const [postsCount, setPostsCount] = useState(3);
   const [newSavedArticles, setNewSavedArticles] = useState();
@@ -97,7 +97,6 @@ function NewsCardList({ isLoggedIn, newsCards, keyword, savedArticles }) {
             isSaved={newSavedArticles?.some(
               (savedArticle) => savedArticle.title === newsCard.title
             )}
-            savedArticles={savedArticles}
             handleBookmarkClick={handleBookmarkClick}
           />
         ))}

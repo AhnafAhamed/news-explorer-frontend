@@ -177,7 +177,6 @@ function App() {
                 newsCards={searchData.articles}
                 isLoggedIn={isLoggedIn}
                 keyword={keyword}
-                savedArticles={savedArticles}
               />
             ) : (
               ""
