@@ -36,7 +36,6 @@ function SavedNewsCardList({ isLoggedIn }) {
       {newsCards.map((newsCard, index) => (
         <NewsCard
           key={index}
-          savedArticles={newsCard}
           image={newsCard.image}
           source={newsCard.source}
           date={newsCard.date}
