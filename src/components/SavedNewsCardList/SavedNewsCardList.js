@@ -1,30 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import mainApi from "../../utils/MainApi";
 import NewsCard from "../NewsCard/NewsCard";
+import { useArticlesProvider } from "../../contexts/ArticlesContext";
 import "./SavedNewsCardList.css";
 
 function SavedNewsCardList({ isLoggedIn }) {
-  const [newsCards, setNewsCards] = useState([]);
-
+  const { getArticles, articles } = useArticlesProvider();
+  
   useEffect(() => {
-    getArticles();
+    getArticles()
   }, []);
-
-  function getArticles() {
-    mainApi
-      .getArticles()
-      .then((data) => {
-        setNewsCards(data);
-        console.log({ data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
   
   function handleDeleteClick(id) {
     mainApi.deleteArticle(id).then((data) => {
-      console.log(data);
+      console.log({deletedData: data});
     }).catch((err) => {
       console.log(err);
     }).finally(() => {
@@ -33,7 +22,7 @@ function SavedNewsCardList({ isLoggedIn }) {
   }
   return (
     <div className="saved-news-card-list">
-      {newsCards.map((newsCard, index) => (
+      {articles.map((newsCard, index) => (
         <NewsCard
           key={index}
           image={newsCard.image}

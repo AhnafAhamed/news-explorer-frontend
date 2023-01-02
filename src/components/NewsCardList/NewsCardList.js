@@ -1,34 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useArticlesProvider } from "../../contexts/ArticlesContext";
 import mainApi from "../../utils/MainApi";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
 function NewsCardList({ isLoggedIn, newsCards, keyword }) {
   const route = useLocation();
+  const { getArticles } = useArticlesProvider();
+  const { articles } = useArticlesProvider();
   const [postsCount, setPostsCount] = useState(3);
-  const [newSavedArticles, setNewSavedArticles] = useState();
   let postsToShow = newsCards.slice(0, postsCount);
 
   function handleShowMorePosts() {
     setPostsCount(postsCount + 3);
   }
-
-  function updateArticlesList() {
-    mainApi
-      .getArticles()
-      .then((data) => {
-        setNewSavedArticles(data);
-        console.log({ data });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  useEffect(() => { 
-    updateArticlesList();
-  }, [keyword]);
 
   function handleBookmarkClick(
     title,
@@ -39,7 +25,8 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
     image
   ) {
     if (isLoggedIn) {
-      const checkIfArticleExists = newSavedArticles?.some(
+      getArticles();
+      const checkIfArticleExists = articles?.some(
         (article) => article.title === title
       );
       if (!checkIfArticleExists) {
@@ -59,10 +46,10 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
           .catch((error) => {
             console.log(error);
           }).finally(() => {
-            updateArticlesList()
+            getArticles()
           })
       } else {
-        const articleToDelete = newSavedArticles.find(
+        const articleToDelete = articles.find(
           (item) => item.title === title
         );
         mainApi
@@ -73,7 +60,7 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
           .catch((error) => {
             console.log(error);
           }).finally(() => {
-            updateArticlesList()
+            getArticles()
           })
       }
     }
@@ -94,7 +81,7 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
             isLoggedIn={isLoggedIn}
             keyword={keyword}
             articleId={newsCard.articleId}
-            isSaved={newSavedArticles?.some(
+            isSaved={articles?.some(
               (savedArticle) => savedArticle.title === newsCard.title
             )}
             handleBookmarkClick={handleBookmarkClick}

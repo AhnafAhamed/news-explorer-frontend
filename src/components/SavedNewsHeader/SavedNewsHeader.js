@@ -1,9 +1,11 @@
 import "./SavedNewsHeader.css";
+import { useArticlesProvider } from "../../contexts/ArticlesContext";
 
-function SavedNewsHeader({ newsCards, userName }) {
+function SavedNewsHeader({ userName }) {
+  const { articles } = useArticlesProvider();
   function categories () {
     let categoryText = "";
-    const categoriesList = newsCards.map((item) => {
+    const categoriesList = articles.map((item) => {
       return item.keyword
     })
     if(categoriesList.length > 2) {
@@ -17,11 +19,11 @@ function SavedNewsHeader({ newsCards, userName }) {
     <div className="saved-news-header">
       <p className="saved-news-header__title">Saved articles</p>
       <h3 className="saved-news-header__info">
-        {newsCards.length === 0
+        {articles.length === 0
           ? "You dont have any articles saved"
-          : `${userName}, you have ${newsCards.length} saved articles`}
+          : `${userName}, you have ${articles.length} saved articles`}
       </h3>
-      {newsCards.length === 0 ? (
+      {articles.length === 0 ? (
         ""
       ) : (
         <div className="saved-news-header__description">
