@@ -17,6 +17,7 @@ import LoginPopup from "../LoginPopup/LoginPopup";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import SavedNewsPage from "../SavedNewsPage/SavedNewsPage";
 import mainApi from "../../utils/MainApi";
+import { ArticlesProvider } from "../../contexts/ArticlesContext";
 
 function App() {
   const [isSignInPopupOpen, setIsSignInPopupOpen] = useState(false);
@@ -161,6 +162,7 @@ function App() {
   return (
     <div className="App">
       <Main>
+        <ArticlesProvider>
         <Switch>
           <Route exact path="/">
             <Hero
@@ -196,6 +198,7 @@ function App() {
             component={SavedNewsPage}
           />
         </Switch>
+        </ArticlesProvider>
       </Main>
       <Popup
         popupName="success"
