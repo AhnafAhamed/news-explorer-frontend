@@ -55,7 +55,7 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
         mainApi
           .deleteArticle(articleToDelete._id)
           .then((data) => {
-            console.log(data);
+            console.log({deletedData: data});
           })
           .catch((error) => {
             console.log(error);

@@ -44,7 +44,6 @@ function App() {
       .searchKeyword(keyword, pastDate.toLocaleDateString(), today)
       .then((data) => {
         setSearchData(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
@@ -139,7 +138,6 @@ function App() {
     if (localStorage.getItem("token")) {
       AuthApi.checkUserToken()
         .then((res) => {
-          console.log(res)
           setIsLoggedIn(true);
           setUserName(res.name);
         })

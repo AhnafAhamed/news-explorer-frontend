@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import mainApi from "../utils/MainApi";
 
 const ArticlesContext = createContext();
@@ -13,7 +13,6 @@ export function ArticlesProvider({ children }) {
       .getArticles()
       .then((data) => {
         setArticles(data);
-        console.log({ data });
       })
       .catch((err) => {
         console.log({err});
