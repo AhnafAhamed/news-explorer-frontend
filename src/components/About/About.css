@@ -1,7 +1,8 @@
 .about {
   display: flex;
   padding: 80px 40px;
-  justify-content: space-between;
+  justify-content: center;
+  column-gap: 25px;
   flex-wrap: wrap;
 }
 
