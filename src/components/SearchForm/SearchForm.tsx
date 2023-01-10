@@ -1,16 +1,21 @@
-import { useState } from "react";
+import { FormEvent,useState } from "react";
 import "./SearchForm.css";
 
-function SearchForm({onSearch}) {
-    const [keyword, setKeyword] = useState("");
+type SearchFormProps = {
+    onSearch: (params: {keyword: string}) => void;
+}
 
-    function handleSubmit(e) {
+function SearchForm({onSearch} : SearchFormProps){
+    const [keyword, setKeyword] = useState<string>("");
+
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         onSearch({keyword})
     }
+    
 
-    function handleChange(e) {
-        setKeyword(e.target.value);
+    function handleChange(e: FormEvent<HTMLInputElement> ) {
+        setKeyword((e.target as HTMLInputElement).value);
     }
     return (
             <form action="" className="search-form" onSubmit={handleSubmit}>
