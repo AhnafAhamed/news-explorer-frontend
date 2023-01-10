@@ -1,15 +1,22 @@
 import Navigation from "../Navigation/Navigation";
 import "./Header.css";
 
-function Header({ onSignInClick, isLoggedIn, onSignOutClick, userName }) {
+type HeaderProps = {
+  onSignInClick: () => void;
+  isLoggedIn: boolean;
+  onSignOutClick: () => void;
+  userName: string;
+};
+
+function Header({ onSignInClick, isLoggedIn, onSignOutClick, userName }: HeaderProps) {
   function handleMenuClick() {
-    document.querySelector(".navigation").classList.add("navigation_mobile");
-    document.querySelector(".header").classList.add("header_mobile");
+    document.querySelector(".navigation")!.classList.add("navigation_mobile");
+    document.querySelector(".header")!.classList.add("header_mobile");
   }
 
   function handleCloseClick() {
-    document.querySelector(".navigation").classList.remove("navigation_mobile");
-    document.querySelector(".header").classList.remove("header_mobile");
+    document.querySelector(".navigation")!.classList.remove("navigation_mobile");
+    document.querySelector(".header")!.classList.remove("header_mobile");
   }
 
   return (
