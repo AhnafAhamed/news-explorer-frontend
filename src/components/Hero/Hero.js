@@ -1,5 +1,5 @@
 import "./Hero.css";
-import Header from "../Header/Header";
+import Header from "../Header/Header.tsx";
 
 function Hero({ onSignInClick, isLoggedIn, onSignOutClick, children, userName }) {
   return (
