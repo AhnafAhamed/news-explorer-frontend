@@ -1,7 +1,15 @@
 import "./Hero.css";
-import Header from "../Header/Header.tsx";
+import Header from "../Header/Header";
 
-function Hero({ onSignInClick, isLoggedIn, onSignOutClick, children, userName }) {
+type HeroProps = {
+  onSignInClick: () => void;
+  isLoggedIn: boolean;
+  onSignOutClick: () => void;
+  userName: string;
+  children: React.ReactNode;
+}
+
+function Hero({ onSignInClick, isLoggedIn, onSignOutClick, children, userName }: HeroProps) {
   return (
     <div className="hero">
       <Header isLoggedIn={isLoggedIn} onSignOutClick={onSignOutClick} onSignInClick={onSignInClick} userName={userName} />
