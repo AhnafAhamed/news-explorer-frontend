@@ -1,5 +1,19 @@
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Popup from "../Popup/Popup";
+
+type LoginPopupProps = {
+  isOpen: boolean,
+  closeButtonClick: () => void,
+  closeOnOverlayClick: () => void,
+  onRedirectClick: () => void,
+  onUserLogin: (params: {email: string, password: string}) => void,
+  isLoginError: boolean,
+}
+
+type FormErrorsType = {
+  email: string,
+  password: string,
+}
 
 function LoginPopup({
   isOpen,
@@ -8,17 +22,18 @@ function LoginPopup({
   onRedirectClick,
   onUserLogin,
   isLoginError
-}) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [formErrors, setFormErrors] = useState({
+}: LoginPopupProps) {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [formErrors, setFormErrors] = useState<FormErrorsType>({
     email: "",
     password: "",
   });
-  const [isValid, setIsValid] = useState(false);
-  const formRef = useRef();
+  const [isValid, setIsValid] = useState<Boolean>(false);
+  const formRef = useRef<HTMLFormElement>(null);
+  const formRefCurrent = formRef.current as unknown as HTMLFormElement;
 
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onUserLogin({
       email: email,
@@ -32,21 +47,21 @@ function LoginPopup({
     setFormErrors({ email: "", password: "" });
   }, [isOpen]);
 
-  function checkFormValidity(e) {
-    setIsValid(formRef.current.checkValidity());
+  function checkFormValidity(e: FormEvent<HTMLFormElement>) {
+    setIsValid(formRefCurrent.checkValidity());
   }
 
-  function updateFormErrors(e) {
-    const { name, validationMessage } = e.target;
+  function updateFormErrors(e: FormEvent<HTMLInputElement>) {
+    const { name, validationMessage } = e.target as HTMLInputElement;
     setFormErrors({
       ...formErrors,
       [name]: validationMessage,
     });
   }
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    formErrors[name] && updateFormErrors(e);
+  function handleChange(e: FormEvent<HTMLInputElement>) {
+    const { name, value} = e.target as HTMLInputElement;
+    formErrors[name as keyof FormErrorsType ] && updateFormErrors(e);
 
     switch (name) {
       case "email":
@@ -96,8 +111,8 @@ function LoginPopup({
           onChange={handleChange}
           onBlur={updateFormErrors}
           placeholder="Enter password"
-          minLength="8"
-          maxLength="40"
+          minLength={8}
+          maxLength={40}
           className="popup__input"
           required
         />
