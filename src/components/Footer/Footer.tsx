@@ -1,7 +1,7 @@
 import "./Footer.css";
-import fbIcon from "../../images/fb.svg";
-import githubIcon from "../../images/github.svg";
 import { NavLink } from "react-router-dom";
+
+const githubIcon = require("../../images/github.svg").default as string;
 
 function Footer() {
   return (
