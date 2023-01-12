@@ -1,10 +1,10 @@
 import "./Navigation.css";
 import { NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+import signout from "../../images/signout.svg";
+import close from "../../images/close.svg";
+import menu from "../../images/menu.svg";
 
-const signout = require("../../images/signout.svg").default as string;
-const close = require("../../images/close.svg").default as string;
-const menu = require("../../images/menu.svg").default as string;
 
 type NavigationProps = {
   onMenuClick: () => void;
