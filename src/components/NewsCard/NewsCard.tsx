@@ -1,6 +1,21 @@
 import "./NewsCard.css";
 import { useLocation } from "react-router-dom";
 
+type NewsCardProps = {
+  isLoggedIn: boolean;
+  articleId: string;
+  image: string;
+  source: string;
+  link: string;
+  date: string;
+  title: string;
+  text: string;
+  keyword: string;
+  isSaved: boolean;
+  handleBookmarkClick: (title: string, text: string, date: string, source: string, link: string, image: string) => void;
+  handleDeleteClick: (articleId: string) => void;
+};
+
 function NewsCard({
   isLoggedIn,
   articleId,
@@ -14,10 +29,11 @@ function NewsCard({
   isSaved,
   handleBookmarkClick,
   handleDeleteClick,
-}) {
+}: NewsCardProps) {
   const route = useLocation();
 
-  function parseDate(input) {
+  function parseDate(input: string) {
+    console.log({input})
     return new Date(input);
   }
   
