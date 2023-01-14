@@ -1,5 +1,14 @@
 import "./Popup.css";
 
+type PopupProps = {
+  children: React.ReactNode;
+  popupName: string;
+  isOpen: boolean;
+  title: string;
+  closeButtonClick: () => void;
+  closeOnOverlayClick: () => void;
+}
+
 function Popup({
   children,
   popupName,
@@ -7,7 +16,7 @@ function Popup({
   title,
   closeButtonClick,
   closeOnOverlayClick,
-}) {
+}: PopupProps) {
   return (
     <div
       onClick={closeOnOverlayClick}
