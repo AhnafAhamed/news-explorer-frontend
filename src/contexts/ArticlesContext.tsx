@@ -1,11 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import mainApi from "../utils/MainApi";
 
-const ArticlesContext = createContext();
+const ArticlesContext = createContext({});
 
 
 
-export function ArticlesProvider({ children }) {
+export function ArticlesProvider({ children }: { children: React.ReactNode } ) {
   const [articles, setArticles] = useState([]);
 
   function getArticles() {
