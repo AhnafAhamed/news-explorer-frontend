@@ -1,5 +1,24 @@
-import { useEffect, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Popup from "../Popup/Popup";
+
+type RegisterPopupProps = {
+  isOpen: boolean;
+  closeButtonClick: () => void;
+  closeOnOverlayClick: () => void;
+  onRedirectClick: () => void;
+  onRegisterUser: (params: {
+    name: string;
+    email: string;
+    password: string;
+  }) => void;
+  isRegistrationError: boolean;
+};
+
+type FormErrorsType = {
+  email: string;
+  password: string;
+  name: string;
+};
 
 function RegisterPopup({
   isOpen,
@@ -8,7 +27,7 @@ function RegisterPopup({
   onRedirectClick,
   onRegisterUser,
   isRegistrationError,
-}) {
+}: RegisterPopupProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -18,9 +37,10 @@ function RegisterPopup({
     name: "",
   });
   const [isValid, setIsValid] = useState(false);
-  const formRef = useRef();
+  const formRef = useRef<HTMLFormElement>(null);
+  const formRefCurrent = formRef.current as unknown as HTMLFormElement;
 
-  function handleSubmit(e) {
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     onRegisterUser({
       name: name,
@@ -38,21 +58,21 @@ function RegisterPopup({
     setFormErrors({ email: "", password: "", name: "" });
   }, [isOpen]);
 
-  function checkFormValidity(e) {
-    setIsValid(formRef.current.checkValidity());
+  function checkFormValidity(e: FormEvent<HTMLFormElement>) {
+    setIsValid(formRefCurrent.checkValidity());
   }
 
-  function updateFormErrors(e) {
-    const { name, validationMessage } = e.target;
+  function updateFormErrors(e: FormEvent<HTMLInputElement>) {
+    const { name, validationMessage } = e.target as HTMLInputElement;
     setFormErrors({
       ...formErrors,
       [name]: validationMessage,
     });
   }
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-    formErrors[name] && updateFormErrors(e);
+  function handleChange(e: FormEvent<HTMLInputElement>) {
+    const { name, value } = e.target as HTMLInputElement;
+    formErrors[name as keyof FormErrorsType] && updateFormErrors(e);
 
     switch (name) {
       case "email":
@@ -91,8 +111,8 @@ function RegisterPopup({
           name="email"
           value={email || ""}
           placeholder="Enter email"
-          minLength="2"
-          maxLength="40"
+          minLength={2}
+          maxLength={40}
           className="popup__input"
           onChange={handleChange}
           onBlur={updateFormErrors}
@@ -105,8 +125,8 @@ function RegisterPopup({
           name="password"
           value={password || ""}
           placeholder="Enter password"
-          minLength="8"
-          maxLength="40"
+          minLength={8}
+          maxLength={40}
           className="popup__input"
           onChange={handleChange}
           onBlur={updateFormErrors}
@@ -119,8 +139,8 @@ function RegisterPopup({
           name="name"
           value={name || ""}
           placeholder="Enter username"
-          minLength="2"
-          maxLength="40"
+          minLength={2}
+          maxLength={40}
           className="popup__input"
           onChange={handleChange}
           onBlur={updateFormErrors}
