@@ -7,6 +7,7 @@ type PopupProps = {
   title: string;
   closeButtonClick: () => void;
   closeOnOverlayClick: () => void;
+  onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
 function Popup({
