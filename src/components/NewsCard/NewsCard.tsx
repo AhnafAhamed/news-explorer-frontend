@@ -6,13 +6,13 @@ type NewsCardProps = {
   articleId: string;
   image: string;
   source: string;
-  link: string;
+  link?: string;
   date: string;
   title: string;
   text: string;
   keyword: string;
-  isSaved: boolean;
-  handleBookmarkClick: (title: string, text: string, date: string, source: string, link: string, image: string) => void;
+  isSaved?: boolean;
+  handleBookmarkClick?: (title: string, text: string, date: string, source: string, link: string, image: string) => void;
   handleDeleteClick?: (articleId: string) => void;
 };
 
@@ -51,7 +51,7 @@ function NewsCard({
             className={`news-card__icon news-card__icon-bookmark ${
               isSaved ? "news-card__icon-bookmark_saved" : ""
             }`}
-            onClick={() => handleBookmarkClick(title, text, date, source, link, image)}
+            onClick={() => handleBookmarkClick?.(title, text, date, source, link!, image)}
           ></button>
         ) : (
           <button

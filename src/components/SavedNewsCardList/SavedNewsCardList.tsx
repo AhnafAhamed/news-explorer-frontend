@@ -4,14 +4,14 @@ import NewsCard from "../NewsCard/NewsCard";
 import { useArticlesProvider } from "../../contexts/ArticlesContext";
 import "./SavedNewsCardList.css";
 
-function SavedNewsCardList({ isLoggedIn }) {
+function SavedNewsCardList({ isLoggedIn }: { isLoggedIn: boolean }) {
   const { getArticles, articles } = useArticlesProvider();
   
   useEffect(() => {
     getArticles()
   }, []);
   
-  function handleDeleteClick(id) {
+  function handleDeleteClick(id: string) {
     mainApi.deleteArticle(id).then((data) => {
       console.log({deletedData: data});
     }).catch((err) => {
@@ -22,7 +22,7 @@ function SavedNewsCardList({ isLoggedIn }) {
   }
   return (
     <div className="saved-news-card-list">
-      {articles.map((newsCard, index) => (
+      {articles.map((newsCard: any, index: number) => (
         <NewsCard
           key={index}
           image={newsCard.image}
