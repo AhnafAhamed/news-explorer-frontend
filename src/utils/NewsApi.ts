@@ -1,17 +1,20 @@
 class NewsApi {
-  constructor(params) {
+  baseUrl: string;
+  headers: { Authorization: string; };
+
+  constructor(params: { baseUrl: string; headers: { Authorization: string; }; }) {
     this.baseUrl = params.baseUrl;
     this.headers = params.headers;
   }
 
-  _checkResponse(res) {
+  _checkResponse(res: Response) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject("Error");
   }
 
-  searchKeyword(keyword, date, currentDate) {
+  searchKeyword(keyword:string, date:string, currentDate:string) {
     return fetch(this.baseUrl + `/everything?q=${keyword}&pageSize=6&from=${date}&to=${currentDate}`, {
       headers: this.headers,
       method: "GET",

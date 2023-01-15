@@ -1,4 +1,6 @@
 class AuthorizationApi {
+  baseUrl: string;
+  headers: { Accept: string; "Content-Type": string; };
   constructor() {
     // this.baseUrl = "https://api.explore.students.nomoreparties.sbs";
     this.baseUrl = "http://localhost:3000";
@@ -8,14 +10,14 @@ class AuthorizationApi {
     };
   }
 
-  _checkResponse(res) {
+  _checkResponse(res: Response) {
     if (res.ok) {
       return res.json();
     }
     return Promise.reject("Error");
   }
 
-  registerUser({ name, email, password }) {
+  registerUser({ name, email, password }: { name: string, email: string, password: string }) {
     return fetch(this.baseUrl + "/signup", {
       headers: this.headers,
       method: "POST",
@@ -27,7 +29,7 @@ class AuthorizationApi {
     }).then((res) => this._checkResponse(res))
   }
 
-  authorizeUser({ email, password }) {
+  authorizeUser({ email, password }: { email: string, password: string }) {
     return fetch(this.baseUrl + "/signin", {
       headers: this.headers,
       method: "POST",

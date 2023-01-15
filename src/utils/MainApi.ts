@@ -1,9 +1,10 @@
 class MainApi {
-  constructor(params) {
+  baseUrl: string;
+  constructor(params: { baseUrl: string; }) {
     this.baseUrl = params.baseUrl;
   }
 
-  _checkResponse(res) {
+  _checkResponse(res: Response) {
     if (res.ok) {
       return res.json();
     }
@@ -26,7 +27,7 @@ class MainApi {
     }).then((res) => this._checkResponse(res));
   }
 
-  saveArticle({ keyword, title, text, date, source, link, image }) {
+  saveArticle({ keyword, title, text, date, source, link, image }: { keyword: string; title: string; text: string; date: string; source: string; link: string; image: string; }) {
     return fetch(this.baseUrl + "/articles", {
       method: "POST",
       headers: this._headers(),
@@ -42,7 +43,7 @@ class MainApi {
     }).then((res) => this._checkResponse(res));
   }
 
-  deleteArticle(articleId) {
+  deleteArticle(articleId: string) {
     return fetch(this.baseUrl + `/articles/${articleId}`, {
       method: "DELETE",
       headers: this._headers(),
