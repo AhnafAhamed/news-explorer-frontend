@@ -1,11 +1,11 @@
 import "./SavedNewsHeader.css";
 import { useArticlesProvider } from "../../contexts/ArticlesContext";
 
-function SavedNewsHeader({ userName }) {
+function SavedNewsHeader({ userName }: { userName: string } ) {
   const { articles } = useArticlesProvider();
   function categories () {
     let categoryText = "";
-    const categoriesList = articles.map((item) => {
+    const categoriesList = articles.map((item: { keyword: string; }) => {
       return item.keyword
     })
     if(categoriesList.length > 2) {
