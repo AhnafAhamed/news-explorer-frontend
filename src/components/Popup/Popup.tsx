@@ -6,7 +6,7 @@ type PopupProps = {
   isOpen: boolean;
   title: string;
   closeButtonClick: () => void;
-  closeOnOverlayClick: () => void;
+  closeOnOverlayClick: (e: KeyboardEvent) => void;
   onSubmit?: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
@@ -20,7 +20,7 @@ function Popup({
 }: PopupProps) {
   return (
     <div
-      onClick={closeOnOverlayClick}
+      onClick={()=> closeOnOverlayClick}
       className={`popup popup_type_${popupName} ${isOpen ? "popup_open" : ""}`}
     >
       <div className="popup__container">

@@ -4,7 +4,7 @@ import Popup from "../Popup/Popup";
 type RegisterPopupProps = {
   isOpen: boolean;
   closeButtonClick: () => void;
-  closeOnOverlayClick: () => void;
+  closeOnOverlayClick: (e: KeyboardEvent) => void;
   onRedirectClick: () => void;
   onRegisterUser: (params: {
     name: string;

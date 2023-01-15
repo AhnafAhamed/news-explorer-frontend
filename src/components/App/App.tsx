@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import newsApi from "../../utils/NewsApi";
 import About from "../About/About";
@@ -24,7 +24,7 @@ function App() {
   const [isSignUpPopupOpen, setIsSignUpPopupOpen] = useState(false);
   const [isSuccessPopupOpen, setIsSuccessPopupOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [searchData, setSearchData] = useState({});
+  const [searchData, setSearchData] = useState<any>({});
   const [isLoading, setIsLoading] = useState(false);
   const [isRegistrationError, setIsRegistrationError] = useState(false);
   const [isLoginError, setIsLoginError] = useState(false);
@@ -36,7 +36,7 @@ function App() {
   const pastDate = new Date();
   pastDate.setDate(pastDate.getDate() - 7);
 
-  function handleSearch({ keyword }) {
+  function handleSearch({ keyword }: { keyword: string }) {
     setIsLoading(true);
     setKeyword(keyword);
     setSearchData({});
@@ -53,7 +53,7 @@ function App() {
       });
   }
 
-  function handleUserRegistration({ name, email, password }) {
+  function handleUserRegistration({ name, email, password }: { name: string; email: string; password: string }) {
     if (!name || !email || !password) {
       return;
     }
@@ -72,7 +72,7 @@ function App() {
       });
   }
 
-  function handleUserLogin({ email, password }) {
+  function handleUserLogin({ email, password }: { email: string; password: string }) {
     if (!email || !password) {
       return;
     }
@@ -116,15 +116,15 @@ function App() {
     setIsSignInPopupOpen(true);
   }
 
-  function handleCloseOnOverlayClick(e) {
-    if (e.target.classList.contains("popup_open")) {
+  function handleCloseOnOverlayClick(e: KeyboardEvent) {
+    if ((e.target as HTMLInputElement).classList.contains("popup_open")) {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);
       setIsSuccessPopupOpen(false);
     }
   }
 
-  function handleCloseOnEscClick(e) {
+  function handleCloseOnEscClick(e: KeyboardEvent) {
     if (e.key === "Escape") {
       setIsSignUpPopupOpen(false);
       setIsSignInPopupOpen(false);

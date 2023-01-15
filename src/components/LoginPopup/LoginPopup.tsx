@@ -4,7 +4,7 @@ import Popup from "../Popup/Popup";
 type LoginPopupProps = {
   isOpen: boolean,
   closeButtonClick: () => void,
-  closeOnOverlayClick: () => void,
+  closeOnOverlayClick: (e: KeyboardEvent) => void,
   onRedirectClick: () => void,
   onUserLogin: (params: {email: string, password: string}) => void,
   isLoginError: boolean,
