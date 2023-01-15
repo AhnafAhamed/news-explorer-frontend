@@ -2,7 +2,15 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import SavedNews from "../SavedNews/SavedNews";
 
-function SavedNewsPage({ savedNewsCards, onSignOutClick, isLoggedIn, onSignInClick, userName }) {
+type SavedNewsPageProps = {
+  savedNewsCards: Array<any>;
+  onSignOutClick: () => void;
+  isLoggedIn: boolean;
+  onSignInClick: () => void;
+  userName: string;
+};
+
+function SavedNewsPage({ savedNewsCards, onSignOutClick, isLoggedIn, onSignInClick, userName }: SavedNewsPageProps) {
   return (
     <div>
       <Header
