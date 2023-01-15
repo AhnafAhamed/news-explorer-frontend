@@ -13,7 +13,7 @@ type NewsCardProps = {
   keyword: string;
   isSaved: boolean;
   handleBookmarkClick: (title: string, text: string, date: string, source: string, link: string, image: string) => void;
-  handleDeleteClick: (articleId: string) => void;
+  handleDeleteClick?: (articleId: string) => void;
 };
 
 function NewsCard({
@@ -56,7 +56,7 @@ function NewsCard({
         ) : (
           <button
             className="news-card__icon news-card__icon-delete"
-            onClick={() => handleDeleteClick(articleId)}
+            onClick={() => handleDeleteClick?.(articleId)}
           ></button>
         )}
         {route.pathname === "/saved-news" ? (

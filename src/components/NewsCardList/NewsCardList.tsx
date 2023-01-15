@@ -5,7 +5,32 @@ import mainApi from "../../utils/MainApi";
 import NewsCard from "../NewsCard/NewsCard";
 import "./NewsCardList.css";
 
-function NewsCardList({ isLoggedIn, newsCards, keyword }) {
+type NewsCardTypes = Array<{
+  url: string;
+  articleId: string;
+  publishedAt: string;
+  description: string;
+  title: string;
+  text: string;
+  date: string;
+  link: string;
+  image: string;
+  urlToImage: string;
+  source: {
+    name: string;
+  };
+  handleBookmarkClick: () => void;
+}>
+  
+
+
+type NewsCardListProps = {
+  isLoggedIn: boolean;
+  newsCards: NewsCardTypes
+  keyword: string;
+}
+
+function NewsCardList({ isLoggedIn, newsCards, keyword }: NewsCardListProps) {
   const route = useLocation();
   const { getArticles } = useArticlesProvider();
   const { articles } = useArticlesProvider();
@@ -17,17 +42,17 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
   }
 
   function handleBookmarkClick(
-    title,
-    text,
-    date,
-    source,
-    link,
-    image
+    title: string,
+    text: string,
+    date: string,
+    source: string,
+    link: string,
+    image: string
   ) {
     if (isLoggedIn) {
       getArticles();
       const checkIfArticleExists = articles?.some(
-        (article) => article.title === title
+        (article: { title: string; }) => article.title === title
       );
       if (!checkIfArticleExists) {
         mainApi
@@ -50,7 +75,7 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
           })
       } else {
         const articleToDelete = articles.find(
-          (item) => item.title === title
+          (item: { title: string; }) => item.title === title
         );
         mainApi
           .deleteArticle(articleToDelete._id)
@@ -82,7 +107,7 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }) {
             keyword={keyword}
             articleId={newsCard.articleId}
             isSaved={articles?.some(
-              (savedArticle) => savedArticle.title === newsCard.title
+              (savedArticle: { title: string; }) => savedArticle.title === newsCard.title
             )}
             handleBookmarkClick={handleBookmarkClick}
           />
