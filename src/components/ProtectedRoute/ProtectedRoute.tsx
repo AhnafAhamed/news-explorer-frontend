@@ -1,6 +1,11 @@
 import { Route, Redirect } from "react-router-dom"
 
-const ProtectedRoute = ({ component: Component, ...props }) => {
+type ProtectedRouteProps = {
+    component: React.ComponentType<any>,
+    isLoggedIn: boolean,
+}
+
+const ProtectedRoute = ({ component: Component, ...props }: ProtectedRouteProps) => {
     return(
         <Route>
             {
