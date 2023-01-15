@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import mainApi from "../utils/MainApi";
 
-const ArticlesContext = createContext({});
+const ArticlesContext = createContext({articles: [], getArticles: () => {}});
 
 
 

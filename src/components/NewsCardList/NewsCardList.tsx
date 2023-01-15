@@ -74,10 +74,13 @@ function NewsCardList({ isLoggedIn, newsCards, keyword }: NewsCardListProps) {
             getArticles()
           })
       } else {
+
         const articleToDelete = articles.find(
-          (item: { title: string; }) => item.title === title
+          (item: { title: string }) => item.title === title
         );
+        
         mainApi
+        // @ts-ignore-next-line
           .deleteArticle(articleToDelete._id)
           .then((data) => {
             console.log({deletedData: data});
